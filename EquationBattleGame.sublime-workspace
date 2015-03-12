@@ -1,0 +1,409 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"J",
+				"JSONPSuccess"
+			],
+			[
+				"dese",
+				"deselectMarker"
+			],
+			[
+				"I",
+				"IMAGEHEIGHT"
+			],
+			[
+				"IM",
+				"IMAGEHEIGHT"
+			],
+			[
+				"SP",
+				"SPEEDCONSTANT"
+			],
+			[
+				"sp",
+				"speedMultiplier"
+			],
+			[
+				"desc",
+				"description"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"col",
+				"col-md-12"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "Package Control Messages\n========================\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n",
+			"settings":
+			{
+				"buffer_size": 2443,
+				"line_ending": "Windows",
+				"name": "Package Control Messages",
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/wamp/www/EquationScrabbleGame"
+	],
+	"file_history":
+	[
+		"/C/wamp/www/EquationBattleGame/index.html",
+		"/C/wamp/www/EquationScrabbleGame/index.html",
+		"/C/Users/chriss/Documents/GitHub/SpaceMathRevSept30/js/game.js",
+		"/C/wamp/www/ArithmeticGameTemplate/Game.js",
+		"/C/wamp/www/EquationGame/Game.js",
+		"/C/wamp/www/Arithmepic/Boot.js",
+		"/C/wamp/www/Arithmepic/Preloader.js",
+		"/C/wamp/www/Arithmepic/Game.js",
+		"/C/wamp/www/EquationBattle/js/Game.js",
+		"/C/wamp/www/EquationBattle/js/Boot.js",
+		"/C/wamp/www/EquationBattle/index.html",
+		"/C/wamp/www/EquationBattle/js/MainMenu.js",
+		"/C/wamp/www/EquationBattle/js/Preloader.js",
+		"/C/Users/chriss/Documents/Career/DabneyBlumWebsite/css/style.css",
+		"/C/Users/chriss/Documents/Career/DabneyBlumWebsite/index.html",
+		"/C/Users/chriss/Documents/Udacity/treehouse/cssnotes.txt",
+		"/C/Users/chriss/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/chriss/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/Project5/OriginalFiles/minicourse-ajax-project/index.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/Project5/OriginalFiles/minicourse-ajax-project/js/script.js",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/gulpfile.js",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/views/css/style.css",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/README.md",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/project-2048.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/views/js/main.js",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/project-webperf.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/project-mobile.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/views/pizza.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/index.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/ResourcesUsed",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/css/style.css",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/build/views/pizza.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/build/project-mobile.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/build/project-2048.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/build/views/css/bootstrap-grid.css",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/build/views/js/main.js",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/js/perfmatters.js",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/build/project-webperf.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/build/index.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/npm-debug.log",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/weboptimizationproject/frontend-nanodegree-mobile-portfolio/build/main.js",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/FrontEndNanoGameDabsVersion/README.md",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/FrontEndNanoGameVersion2/frontend-nanodegree-arcade-game-master/index.html",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/FrontEndNanoGameVersion2/frontend-nanodegree-arcade-game-master/js/resources.js",
+		"/C/Users/chriss/Documents/Udacity/FrontEndNano/InteractiveResumeDabneyBlum/frontend-nanodegree-resume/README.md",
+		"/C/Users/chriss/Documents/GitHub/FrontEndNanoP1/index.html",
+		"/C/Users/chriss/Documents/GitHub/FrontEndNanoP1/css/style.css"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"checkForMatch",
+			"dragReleased",
+			"targeteq",
+			"equationEntity",
+			"bubble",
+			"number",
+			"console",
+			"Success",
+			"FarmersMarketAJAXSuccess",
+			"concat",
+			"placePickedHandler",
+			"visible",
+			"mymapObject",
+			"BasicGoogleMap",
+			"openInfoWindow",
+			"placePickedHandler",
+			"theViewModel",
+			"context",
+			"locationInputBox",
+			"resetPlacesList",
+			"selectedmar",
+			"map.",
+			"selectedMarker",
+			"pan",
+			"panby",
+			"map",
+			"infowindow",
+			"push",
+			"infoWindowContentString",
+			"filterInputHandler",
+			"showDetailedInfo",
+			"map.setCenter",
+			"center",
+			"resetPlacesList",
+			"filter",
+			"getFarmersMarketsByZip",
+			"getFarmersMarketsByLatLng_OLD",
+			"addMapMarkerEventListener",
+			"marker",
+			"markers",
+			"search",
+			"search-button",
+			"search-box",
+			"search-form",
+			"search-box",
+			"search-form",
+			"searchInput",
+			"searchInputHandler",
+			"locationInputFormSubmitHandler",
+			"selectedMarker",
+			"toggleMenuBoolean",
+			"font",
+			"panby",
+			"cog",
+			"carrot_picked",
+			"marketName",
+			"createmarker",
+			"createmapmarker",
+			"place",
+			"reset",
+			"showinfo",
+			"showinfowindow",
+			"infowindowcontentstring",
+			"infowindow",
+			"lat",
+			"getlat",
+			"toggleMenuValue",
+			"currentmaplat",
+			"currentlat",
+			"currentlatlng",
+			"map",
+			"google.map",
+			"googlePlacesSearch",
+			"toggleMenuValue",
+			"display",
+			"visible",
+			"createmapmarker",
+			"customData",
+			"map.pan",
+			"setplace",
+			"window.innerHeight",
+			"createMapMarker",
+			"inner",
+			"setPlace",
+			"currentMapLatLng",
+			"searchInputHandler",
+			"currentMapLatLng",
+			"address",
+			"location-box",
+			"panby",
+			"marker",
+			"map.pan",
+			"gui",
+			"480",
+			"google",
+			"toggleListValue",
+			"toggleMenuValue",
+			"container",
+			"placeslist",
+			"placelist",
+			"toggleMenuValue",
+			"toggleListValue",
+			"placelisttogglehandler",
+			"place-list-toggle",
+			"app-container",
+			"customData",
+			"createMapMarker",
+			"panBy",
+			"  self.toggleListValue(false);",
+			"pan",
+			"toggle",
+			"map.panBy",
+			"click",
+			"place.address",
+			"showinfowindow",
+			"z-ind",
+			"zind",
+			"z-ind",
+			"infoWindow",
+			"addflickr",
+			"8",
+			"toggleListValue",
+			"searchInput",
+			"button",
+			"menu",
+			"album",
+			"<br>",
+			"<br><br>"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2443,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2443,
+								2443
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "EquationBattleGame.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 205.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
