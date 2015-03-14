@@ -12,6 +12,10 @@ var CONSTANTPOSITIONX = 100 + 100+ 100;
 var CONSTANTPOSITIONY = GRAPHSIZE+100;
 var equationFontStyle = { font: "italic 24px Palatino", fill: "#000000", align: "center" };
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 TextGamePiece = function(game, originX, originY, value, destinationX, destinationY) {
   
     Phaser.Sprite.call(this, game, originX, originY, 'equationBattleImages', 'woodtile.png');
@@ -164,7 +168,7 @@ this.playerBMD.strokeStyle = '#ffffff';
 this.equationGameGraphic = this.game.add.graphics(0, 0);
 
 this.userEquation = Object.create(equationEntity);
-	this.userEquation.initializeEquationSettings(3 , 2, -2, 60);
+	this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0, 3), getRandomInt(-3, 3), 60);
 		this.userEquation.draw(this.gridBMD.ctx);
 
         this.xCoefficientBox = this.add.sprite(XCOEFFPOSITIONX, XCOEFFPOSITIONY, 'equationBattleImages', 'boxsmall.png');
@@ -179,12 +183,12 @@ this.userEquation = Object.create(equationEntity);
         this.constantGamePieces = this.add.group();
 
 
-      for (var i = 0; i < 3; i++) {
-       currentGamePiece = new xCoefficientGamePiece(this, i*54 + 20, GRAPHSIZE + 20, i, XCOEFFPOSITIONX, XCOEFFPOSITIONY);
+      for (var i = 0; i < 2; i++) {
+       currentGamePiece = new xCoefficientGamePiece(this, i*54 + 20, GRAPHSIZE + 20, getRandomInt(-3, 3), XCOEFFPOSITIONX, XCOEFFPOSITIONY);
         this.xCoefficientGamePieces.add(currentGamePiece);
-              currentGamePiece = new xExponentGamePiece(this, i*54 + 220, GRAPHSIZE + 20, i, XEXPONENTPOSITIONX, XEXPONENTPOSITIONY);
+              currentGamePiece = new xExponentGamePiece(this, i*54 + 220, GRAPHSIZE + 20, getRandomInt(0, 3), XEXPONENTPOSITIONX, XEXPONENTPOSITIONY);
         this.xExponentGamePieces.add(currentGamePiece);
-              currentGamePiece = new constantGamePiece(this, i*54 + 440, GRAPHSIZE + 20, i, CONSTANTPOSITIONX, CONSTANTPOSITIONY);
+              currentGamePiece = new constantGamePiece(this, i*54 + 440, GRAPHSIZE + 20, getRandomInt(-3, 3), CONSTANTPOSITIONX, CONSTANTPOSITIONY);
         this.constantGamePieces.add(currentGamePiece);
        };
 
