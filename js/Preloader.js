@@ -21,6 +21,8 @@ BasicGame.Preloader.prototype = {
 
 		//this.load.audio('titleMusic', ['assets/audio/DST-AngryRobotIII.mp3']);
 		this.load.atlas('equationBattleImages', 'assets/images/equation_battle.png', 'assets/images/equation_battle.json');
+		    this.load.image('playbutton', 'assets/raw_images/buttonOut.png');
+
 	},
 
 	create: function () {
