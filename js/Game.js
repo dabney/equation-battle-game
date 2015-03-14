@@ -8,28 +8,28 @@ var XCOEFFPOSITIONX = 100;
 var XCOEFFPOSITIONY = GRAPHSIZE+100;
 var XEXPONENTPOSITIONX = 100 + 100;
 var XEXPONENTPOSITIONY = GRAPHSIZE+100;
-var BPOSITIONX = 100 + 100+ 100;
-var BPOSITIONY = GRAPHSIZE+100;
+var CONSTANTPOSITIONX = 100 + 100+ 100;
+var CONSTANTPOSITIONY = GRAPHSIZE+100;
 var equationFontStyle = { font: "italic 24px Palatino", fill: "#000000", align: "center" };
 
-TextGamePiece = function(game, x, y, value) {
+TextGamePiece = function(game, originX, originY, value, destinationX, destinationY) {
   
-    Phaser.Sprite.call(this, game, x, y, 'equationBattleImages', 'woodtile.png');
+    Phaser.Sprite.call(this, game, originX, originY, 'equationBattleImages', 'woodtile.png');
                     this.anchor.setTo(0.5, 0.5);
                       game.add.existing(this);
 
 
-    this.textObject = game.add.text(x, y, value, equationFontStyle);
+    this.textObject = game.add.text(originX, originY, String(value), equationFontStyle);
                  this.textObject.anchor.setTo(0.5, 0.5);
 
     this.value = value;
         this.inputEnabled = true;
         this.input.enableDrag(true, true, true, 1, null, null);
        //this.input.useHandCursor = true;
-              this.finalPositionX = XCOEFFPOSITIONX;
-        this.finalPositionY = XCOEFFPOSITIONY;
-        this.originX = x;
-        this.originY = y;
+              this.finalPositionX = destinationX;
+        this.finalPositionY = destinationY;
+        this.originX = originX;
+        this.originY = originY;
                 this.events.onDragStart.add(this.dragStart, this);
         this.events.onDragStop.add(this.dragRelease, this);
 };
@@ -43,22 +43,12 @@ TextGamePiece.prototype.dragStart = function(draggedObject) {
         console.log('drag started:');
       console.dir(draggedObject);
  
-//        this.draggingInProgress = true;
- //       this.currentDraggedItem = draggedObject;
-             console.log('this.draggingInProgress: ' + this.draggingInProgress);
-            console.log('this.currentDraggedItem: ' + this.currentDraggedItem);
 };
 
 TextGamePiece.prototype.dragRelease = function(item) {
-console.log('textObject loc: ' + item.textObject.x, ', ' + item.textObject.y);
         // If the distance from final position is less than 50 then tween to final position else tween back to initial position
-        if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
-      item.bmd = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
-        item.bmd.dirty = true;
-        item.bmd.addToWorld();
-          this.userEquation2 = Object.create(equationEntity);
-  this.userEquation2.initializeEquationSettings(item.value , 2, -2, 60);
-    this.userEquation2.draw(item.bmd.ctx);     
+   if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
+  
             this.game.add.tween(item).to({x: item.finalPositionX, y: item.finalPositionY }, 500, Phaser.Easing.Back.Out, true);
 }
 else {
@@ -68,21 +58,66 @@ else {
             this.game.add.tween(item).to({x: item.originX, y: item.originY }, 500, Phaser.Easing.Back.Out, true);
 //item.bmd.clear();
 }
-              this.draggingInProgress = false;
-        this.currentDraggedItem = null;
         };
 
+function xCoefficientGamePiece(game, originX, originY, value, destinationX, destinationY) {
+  TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY);
+};
+xCoefficientGamePiece.prototype = Object.create(TextGamePiece.prototype);
+xCoefficientGamePiece.prototype.constructor = xCoefficientGamePiece;
+xCoefficientGamePiece.prototype.dragRelease = function(item) {
+  this.game.currentXCoefficient = item.value;
+     if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
+           this.game.add.tween(item).to({x: item.finalPositionX, y: item.finalPositionY }, 500, Phaser.Easing.Back.Out, true);
+}
+else {
+            this.game.add.tween(item).to({x: item.originX, y: item.originY }, 500, Phaser.Easing.Back.Out, true);
+}
+};
+
+function xExponentGamePiece(game, originX, originY, value, destinationX, destinationY) {
+  TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY);
+};
+xExponentGamePiece.prototype = Object.create(TextGamePiece.prototype);
+xExponentGamePiece.prototype.constructor = xCoefficientGamePiece;
+xExponentGamePiece.prototype.dragRelease = function(item) {
+  this.game.currentXExponent = item.value;
+     if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
+           this.game.add.tween(item).to({x: item.finalPositionX, y: item.finalPositionY }, 500, Phaser.Easing.Back.Out, true);
+}
+else {
+            this.game.add.tween(item).to({x: item.originX, y: item.originY }, 500, Phaser.Easing.Back.Out, true);
+}
+};
+
+function constantGamePiece(game, originX, originY, value, destinationX, destinationY) {
+  TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY);
+};
+constantGamePiece.prototype = Object.create(TextGamePiece.prototype);
+constantGamePiece.prototype.constructor = xCoefficientGamePiece;
+constantGamePiece.prototype.dragRelease = function(item) {
+  this.game.currentConstant = item.value;
+     if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
+           this.game.add.tween(item).to({x: item.finalPositionX, y: item.finalPositionY }, 500, Phaser.Easing.Back.Out, true);
+}
+else {
+            this.game.add.tween(item).to({x: item.originX, y: item.originY }, 500, Phaser.Easing.Back.Out, true);
+}
+};
+
+
 BasicGame.Game = function (game) {
-  var draggingInProgress = false;
-  var currentDraggedItem = null;
+  var gridBMD;
+  var playerBMD;
+  var xCoefficientGamePieces = null;
   var xCoefficientBox = null;
     var xExponentBox = null;
 
-  var BTermBox = null;
+  var constantBox = null;
 
   var currentXCoefficient = null;
   var currentXExponent = null;
-  var currentBTerm = null;
+  var currentConstant = null;
 
 	//	When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
 
@@ -111,37 +146,61 @@ BasicGame.Game = function (game) {
 BasicGame.Game.prototype = {
 
 	create: function () {
-
+var currentGamePiece;
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-	this.bmd = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
-				this.bmd.dirty = true;
-				this.bmd.addToWorld();
-this.bmd.strokeStyle = '#f00';
-this.drawGrid(this.bmd.ctx);
+	this.gridBMD = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
+				this.gridBMD.dirty = true;
+				this.gridBMD.addToWorld();
+this.gridBMD.strokeStyle = '#f00';
+this.drawGrid(this.gridBMD.ctx);
+
+  this.playerBMD = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
+        this.playerBMD.dirty = true;
+        this.playerBMD.addToWorld();
+this.playerBMD.strokeStyle = '#ffffff';
+
 this.userEquation = Object.create(equationEntity);
 	this.userEquation.initializeEquationSettings(3 , 2, -2, 60);
-		this.userEquation.draw(this.bmd.ctx);
+		this.userEquation.draw(this.gridBMD.ctx);
+
         this.xCoefficientBox = this.add.sprite(XCOEFFPOSITIONX, XCOEFFPOSITIONY, 'equationBattleImages', 'boxsmall.png');
         this.xCoefficientBox.anchor.setTo(0.5, 0.5);
         this.currentXExponent = this.add.sprite(XEXPONENTPOSITIONX, XEXPONENTPOSITIONY, 'equationBattleImages', 'boxsmall.png');
         this.currentXExponent.anchor.setTo(0.5, 0.5);
-        this.BTermBox = this.add.sprite(BPOSITIONX, BPOSITIONY, 'equationBattleImages', 'boxsmall.png');
-        this.BTermBox.anchor.setTo(0.5, 0.5);
+        this.constantBox = this.add.sprite(CONSTANTPOSITIONX, CONSTANTPOSITIONY, 'equationBattleImages', 'boxsmall.png');
+        this.constantBox.anchor.setTo(0.5, 0.5);
 
-        this.gamePieces = this.add.group();
+        this.xCoefficientGamePieces = this.add.group();
+        this.xExponentGamePieces = this.add.group();
+        this.constantGamePieces = this.add.group();
 
-      for (var i = 0; i < 8; i++) {
-       testGamePiece = new TextGamePiece(this, i*54, GRAPHSIZE + 20, i);
-        this.gamePieces.add(testGamePiece);
+
+      for (var i = 0; i < 3; i++) {
+       currentGamePiece = new xCoefficientGamePiece(this, i*54 + 20, GRAPHSIZE + 20, i, XCOEFFPOSITIONX, XCOEFFPOSITIONY);
+        this.xCoefficientGamePieces.add(currentGamePiece);
+              currentGamePiece = new xExponentGamePiece(this, i*54 + 220, GRAPHSIZE + 20, i, XEXPONENTPOSITIONX, XEXPONENTPOSITIONY);
+        this.xExponentGamePieces.add(currentGamePiece);
+              currentGamePiece = new constantGamePiece(this, i*54 + 440, GRAPHSIZE + 20, i, CONSTANTPOSITIONX, CONSTANTPOSITIONY);
+        this.constantGamePieces.add(currentGamePiece);
        };
-console.log('length of gamePieces group: ' + this.gamePieces.length);
-      console.dir(this.gamePieces);
 
+  this.commitButton = this.add.button(160, 210, 'equationBattleImages', this.commitToMove, this, 'buttonOver.png', 'buttonOut.png', 'buttonOver.png');
+    this.commitButton.input.useHandCursor = true;
 //        this.bmdsprite = this.add.sprite(240, 240, this.bmd);
 //		this.bmdsprite.anchor.setTo(0.5, 0.5);
      
 	},
+
+  commitToMove: function() {
+  var bmd = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
+bmd.dirty = true;
+bmd.addToWorld();
+          this.userEquation2 = Object.create(equationEntity);
+  this.userEquation2.initializeEquationSettings(this.currentXCoefficient , this.currentXExponent, this.currentConstant, 60);
+  console.dir(bmd);
+    this.userEquation2.draw(bmd.ctx);     
+  },
 //////
 // draw the coordinate grid 
 drawGrid: function(gridContext) {
