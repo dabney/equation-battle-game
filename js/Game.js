@@ -109,6 +109,7 @@ else {
 BasicGame.Game = function (game) {
   var gridBMD;
   var playerBMD;
+  var equationGameGraphic;
   var xCoefficientGamePieces = null;
   var xCoefficientBox = null;
     var xExponentBox = null;
@@ -160,6 +161,8 @@ this.drawGrid(this.gridBMD.ctx);
         this.playerBMD.addToWorld();
 this.playerBMD.strokeStyle = '#ffffff';
 
+this.equationGameGraphic = this.game.add.graphics(0, 0);
+
 this.userEquation = Object.create(equationEntity);
 	this.userEquation.initializeEquationSettings(3 , 2, -2, 60);
 		this.userEquation.draw(this.gridBMD.ctx);
@@ -199,7 +202,21 @@ bmd.addToWorld();
           this.userEquation2 = Object.create(equationEntity);
   this.userEquation2.initializeEquationSettings(this.currentXCoefficient , this.currentXExponent, this.currentConstant, 60);
   console.dir(bmd);
-    this.userEquation2.draw(bmd.ctx);     
+  //  this.userEquation2.draw(bmd.ctx);
+  this.drawEquationWithGameGraphics(this.userEquation2, this.equationGameGraphic);  
+    console.dir(this.userEquation2.pointsArray); 
+  },
+
+  drawEquationWithGameGraphics: function(currentEquation, currentGameGraphic) {
+        if (currentEquation.pointsArray) {
+    currentGameGraphic.lineStyle(3, 0x33FF00);
+      currentGameGraphic.moveTo(currentEquation.pointsArray[0].x, currentEquation.pointsArray[0].y);
+      for (var i=1; i < currentEquation.pointsArray.length; i++) {
+      if (currentEquation.pointsArray[i].visible) {
+      currentGameGraphic.lineTo(currentEquation.pointsArray[i].x, currentEquation.pointsArray[i].y);
+    }
+    }
+    }
   },
 //////
 // draw the coordinate grid 
