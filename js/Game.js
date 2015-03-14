@@ -12,14 +12,14 @@ var BPOSITIONX = 100 + 100+ 100;
 var BPOSITIONY = GRAPHSIZE+100;
 var equationFontStyle = { font: "italic 24px Palatino", fill: "#000000", align: "center" };
 
-EquationGamePiece = function(game, x, y, value) {
+TextGamePiece = function(game, x, y, value) {
   
     Phaser.Sprite.call(this, game, x, y, 'equationBattleImages', 'woodtile.png');
                     this.anchor.setTo(0.5, 0.5);
                       game.add.existing(this);
 
 
-    this.textObject = game.add.text(x, y, value +' x ', equationFontStyle);
+    this.textObject = game.add.text(x, y, value +'x ', equationFontStyle);
                  this.textObject.anchor.setTo(0.5, 0.5);
 
     this.value = value;
@@ -33,9 +33,9 @@ EquationGamePiece = function(game, x, y, value) {
                 this.events.onDragStart.add(game.dragStarted, this);
         this.events.onDragStop.add(game.dragReleased, this);
 };
-EquationGamePiece.prototype = Object.create(Phaser.Sprite.prototype);
-EquationGamePiece.prototype.constructor = EquationGamePiece;
-EquationGamePiece.prototype.update = function() {
+TextGamePiece.prototype = Object.create(Phaser.Sprite.prototype);
+TextGamePiece.prototype.constructor = TextGamePiece;
+TextGamePiece.prototype.update = function() {
 this.textObject.x = this.x;
 this.textObject.y = this.y;
 
@@ -104,7 +104,7 @@ this.userEquation = Object.create(equationEntity);
         this.gamePieces = this.add.group();
 
       for (var i = 0; i < 8; i++) {
-       testGamePiece = new EquationGamePiece(this, i*54, GRAPHSIZE + 20, i);
+       testGamePiece = new TextGamePiece(this, i*54, GRAPHSIZE + 20, i);
 //           testGamePiece.textObject = this.add.text(i*54, GRAPHSIZE + 20, i +' x ', equationFontStyle);
   //               testGamePiece.textObject.anchor.setTo(0.5, 0.5);
                  this.gamePieces.add(testGamePiece);
