@@ -19,7 +19,7 @@ TextGamePiece = function(game, x, y, value) {
                       game.add.existing(this);
 
 
-    this.textObject = game.add.text(x, y, value +'x ', equationFontStyle);
+    this.textObject = game.add.text(x, y, value, equationFontStyle);
                  this.textObject.anchor.setTo(0.5, 0.5);
 
     this.value = value;
@@ -30,18 +30,49 @@ TextGamePiece = function(game, x, y, value) {
         this.finalPositionY = XCOEFFPOSITIONY;
         this.originX = x;
         this.originY = y;
-                this.events.onDragStart.add(game.dragStarted, this);
-        this.events.onDragStop.add(game.dragReleased, this);
+                this.events.onDragStart.add(this.dragStart, this);
+        this.events.onDragStop.add(this.dragRelease, this);
 };
 TextGamePiece.prototype = Object.create(Phaser.Sprite.prototype);
 TextGamePiece.prototype.constructor = TextGamePiece;
 TextGamePiece.prototype.update = function() {
-this.textObject.x = this.x;
-this.textObject.y = this.y;
-
+  this.textObject.x = this.x;
+  this.textObject.y = this.y;
 };
+TextGamePiece.prototype.dragStart = function(draggedObject) {
+        console.log('drag started:');
+      console.dir(draggedObject);
+ 
+//        this.draggingInProgress = true;
+ //       this.currentDraggedItem = draggedObject;
+             console.log('this.draggingInProgress: ' + this.draggingInProgress);
+            console.log('this.currentDraggedItem: ' + this.currentDraggedItem);
+};
+
+TextGamePiece.prototype.dragRelease = function(item) {
+console.log('textObject loc: ' + item.textObject.x, ', ' + item.textObject.y);
+        // If the distance from final position is less than 50 then tween to final position else tween back to initial position
+        if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
+      item.bmd = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
+        item.bmd.dirty = true;
+        item.bmd.addToWorld();
+          this.userEquation2 = Object.create(equationEntity);
+  this.userEquation2.initializeEquationSettings(item.value , 2, -2, 60);
+    this.userEquation2.draw(item.bmd.ctx);     
+            this.game.add.tween(item).to({x: item.finalPositionX, y: item.finalPositionY }, 500, Phaser.Easing.Back.Out, true);
+}
+else {
+//    var target_angle = this.bmdsprite.angle - 180;
+//    this.game.add.tween(this.bmdsprite).to({angle: this.bmdsprite.angle - 180}, 1000).start();
+//this.bmdsprite.rotation = this.bmdsprite.rotation + 3.141519;
+            this.game.add.tween(item).to({x: item.originX, y: item.originY }, 500, Phaser.Easing.Back.Out, true);
+//item.bmd.clear();
+}
+              this.draggingInProgress = false;
+        this.currentDraggedItem = null;
+        };
+
 BasicGame.Game = function (game) {
-  var gamePiecesArray = null;
   var draggingInProgress = false;
   var currentDraggedItem = null;
   var xCoefficientBox = null;
@@ -80,9 +111,6 @@ BasicGame.Game = function (game) {
 BasicGame.Game.prototype = {
 
 	create: function () {
-    this.gamePiecesArray = [];
-console.log('this.gamePiecesArray: ' + this.gamePiecesArray);
-console.dir(this.gamePiecesArray);
 
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -105,36 +133,8 @@ this.userEquation = Object.create(equationEntity);
 
       for (var i = 0; i < 8; i++) {
        testGamePiece = new TextGamePiece(this, i*54, GRAPHSIZE + 20, i);
-//           testGamePiece.textObject = this.add.text(i*54, GRAPHSIZE + 20, i +' x ', equationFontStyle);
-  //               testGamePiece.textObject.anchor.setTo(0.5, 0.5);
-                 this.gamePieces.add(testGamePiece);
-  //         testGamePiece.textObject = this.add.text(100, 100, 1 +' x ', { font: "italic 24px Palatino", fill: "#000000", align: "center" });
-    //             testGamePiece.textObject.anchor.setTo(0.5, 0.5);
-     //            testGamePiece.z = 1;
-      //           testGamePiece.textObject.z = 0;
-
+        this.gamePieces.add(testGamePiece);
        };
-
-			for (var i = 0; i < 0; i++) {
-        newGamePiece = this.add.sprite(i*54, GRAPHSIZE + 20, 'equationBattleImages', 'woodtile.png');
-
-			//	newGamePiece = this.gamePieces.create(i*54, GRAPHSIZE + 20, 'equationBattleImages', 'woodtile.png');
-				newGamePiece.value = i;
-                newGamePiece.anchor.setTo(0.5, 0.5);
-				newGamePiece.inputEnabled = true;
-				newGamePiece.input.enableDrag(true, true, true, 1, null, null);
-				newGamePiece.finalPositionX = XCOEFFPOSITIONX;
-				newGamePiece.finalPositionY = XCOEFFPOSITIONY;
-				newGamePiece.originX = newGamePiece.x;
-				newGamePiece.originY = newGamePiece.y;
-				newGamePiece.input.useHandCursor = true;
-                newGamePiece.textObject = this.add.text(newGamePiece.x, newGamePiece.y, i +' x ', { font: "italic 24px Palatino", fill: "#000000", align: "center" });
-	           newGamePiece.textObject.anchor.setTo(0.5, 0.5);
-                newGamePiece.events.onDragStart.add(this.dragStarted, this);
-				newGamePiece.events.onDragStop.add(this.dragReleased, this);
-        this.gamePiecesArray.push(newGamePiece);
-			};
-
 console.log('length of gamePieces group: ' + this.gamePieces.length);
       console.dir(this.gamePieces);
 
@@ -181,60 +181,9 @@ drawGrid: function(gridContext) {
 },
 //////
 
-    dragStarted: function (draggedObject) {
-      console.log('drag started:');
-      console.dir(draggedObject);
- 
-        this.draggingInProgress = true;
-        this.currentDraggedItem = draggedObject;
-             console.log('this.draggingInProgress: ' + this.draggingInProgress);
-            console.log('this.currentDraggedItem: ' + this.currentDraggedItem);
 
-    },
-
-    dragReleased: function(item) {
-console.log('textObject loc: ' + item.textObject.x, ', ' + item.textObject.y);
-        // If the distance from final position is less than 50 then tween to final position else tween back to initial position
-        if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
-			item.bmd = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
-				item.bmd.dirty = true;
-				item.bmd.addToWorld();
-        	this.userEquation2 = Object.create(equationEntity);
-	this.userEquation2.initializeEquationSettings(item.value , 2, -2, 60);
-		this.userEquation2.draw(item.bmd.ctx);	   
-            this.game.add.tween(item).to({x: item.finalPositionX, y: item.finalPositionY }, 500, Phaser.Easing.Back.Out, true);
-}
-else {
-//		var target_angle = this.bmdsprite.angle - 180;
-//		this.game.add.tween(this.bmdsprite).to({angle: this.bmdsprite.angle - 180}, 1000).start();
-//this.bmdsprite.rotation = this.bmdsprite.rotation + 3.141519;
-            this.game.add.tween(item).to({x: item.originX, y: item.originY }, 500, Phaser.Easing.Back.Out, true);
-//item.bmd.clear();
-}
-              this.draggingInProgress = false;
-        this.currentDraggedItem = null;
-    },
 
 	update: function () {
-    for (var i=0; i < 9; i++) {
-   //   this.game.gamePieces[i].textObject.x = this.game.gamePieces[i].x;
-      //      this.game.gamePieces[i].textObject.y = this.game.gamePieces[i].y;
-
-    }
- //   testGamePiece.textObject.x = testGamePiece.x;
-  //      testGamePiece.textObject.y = testGamePiece.y;
-
-       // testGamePiece.textObject.z = 0;
-
-       //  if (this.draggingInProgress == true && this.currentDraggedItem) {
-             //console.log('dragging');
-             //this.currentDraggedItem.textObject.reset(this.currentDraggedItem.x - 5, this.currentDraggedItem.y);
-          //   this.currentDraggedItem.textObject.x = this.currentDraggedItem.x;
-           //  this.currentDraggedItem.textObject.y = this.currentDraggedItem.y;
-
-            // this.currentDraggedItem.zIndex = 0;
-
-       // }
     
 	},
 
