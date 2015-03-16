@@ -20,6 +20,7 @@ var playerRotationArray = [0];
 var playerArrayPosition = 0;
 var playerTraversing = false;
 
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -131,6 +132,7 @@ BasicGame.Game = function (game) {
   var currentXCoefficient = null;
   var currentXExponent = null;
   var currentConstant = null;
+this.pickupPiece = [];
 
 
 
@@ -180,8 +182,33 @@ this.playerBMD.strokeStyle = '#ffffff';
 this.equationGameGraphic = this.game.add.graphics(0, 0);
 
 this.userEquation = Object.create(equationEntity);
-	this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0, 3), getRandomInt(-3, 3), 60);
+  this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), 2, getRandomInt(-3, 3), 10);
+
+//	this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0, 3), getRandomInt(-3, 3), 60);
 		this.userEquation.draw(this.gridBMD.ctx);
+    for (var i=0; i < this.userEquation.pointsArray.length; i++) {
+            this.pickupPiece[i] = this.game.add.sprite(this.userEquation.pointsArray[i].x, this.userEquation.pointsArray[i].y, 'equationBattleImages', 'pickup000.png');
+            this.pickupPiece[i].anchor.setTo(0.5, 0.5);
+
+    // add animation phases
+    this.pickupPiece[i].animations.add('spin', [
+        'pickup001.png',
+        'pickup002.png',
+        'pickup003.png',
+        'pickup004.png',
+        'pickup005.png',
+        'pickup006.png',
+        'pickup007.png',
+        'pickup008.png',
+        'pickup009.png',
+        'pickup010.png',
+        'pickup011.png'
+
+    ], 5, true, false);
+
+    // play animation
+    this.pickupPiece[i].animations.play('spin');
+    }
 
         this.xCoefficientBox = this.add.sprite(XCOEFFPOSITIONX, XCOEFFPOSITIONY, 'equationBattleImages', 'boxsmall.png');
         this.xCoefficientBox.anchor.setTo(0.5, 0.5);
@@ -218,14 +245,16 @@ this.userEquation = Object.create(equationEntity);
         'Alienhead004.png',
         'Alienhead005.png',
         'Alienhead006.png',
-        'Alienhead007.png',
-    ], 10, true, false);
+        'Alienhead007.png'
+    ], 5, true, false);
 
     // play animation
     this.alien.animations.play('eat');
 //        this.bmdsprite = this.add.sprite(240, 240, this.bmd);
 //		this.bmdsprite.anchor.setTo(0.5, 0.5);
-     
+   
+//        this.bmdsprite = this.add.sprite(240, 240, this.bmd);
+//    this.bmdsprite.anchor.setTo(0.5, 0.5);
 	},
 
   commitToMove: function() {
@@ -286,7 +315,7 @@ if (i > 0) {
   },
 
   animateSpriteAlongPoints: function(theSprite, theXPoints, theYPoints) {
-console.log('in animate Sprite');
+//console.log('in animate Sprite');
 //var tempTimer = this.game.time.create(false);
 for (var i=0; i < theXPoints.length; i++) {
   this.game.time.events.add(Phaser.Timer.SECOND * .1, this.moveSpriteTo(theSprite, theXPoints[i], theYPoints[i]), this);
@@ -298,7 +327,7 @@ for (var i=0; i < theXPoints.length; i++) {
   },
 
   moveSpriteTo: function(theSprite, x, y) {
-    console.log('moving sprite');
+ //   console.log('moving sprite');
     theSprite.x = x;
     theSprite.y = y;
   },
@@ -317,7 +346,7 @@ for (var i=0; i < theXPoints.length; i++) {
 //////
 // draw the coordinate grid 
 drawGrid: function(gridContext) {
-    console.log('in drawGrid: ' + GRAPHLOCX + ', ' +GRAPHLOCY + ', ' + GRAPHSIZE)
+  //  console.log('in drawGrid: ' + GRAPHLOCX + ', ' +GRAPHLOCY + ', ' + GRAPHSIZE)
 	gridContext.save();
 	gridContext.translate(GRAPHLOCX, GRAPHLOCY);
 	gridContext.fillStyle = "rgba(0, 256, 0, .5)";
@@ -364,7 +393,7 @@ drawGrid: function(gridContext) {
              this.alien.x = playerXArray[playerArrayPosition];
             this.alien.y = playerYArray[playerArrayPosition];
             this.alien.rotation = playerRotationArray[playerArrayPosition];
-            console.log('alien rotation: ' + this.alien.rotation);
+          //  console.log('alien rotation: ' + this.alien.rotation);
             playerArrayPosition++;
             if (playerArrayPosition > playerXArray.length) {
               playerArrayPosition = 0;
