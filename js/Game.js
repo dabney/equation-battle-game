@@ -12,6 +12,12 @@ var CONSTANTPOSITIONX = 100 + 100+ 100;
 var CONSTANTPOSITIONY = GRAPHSIZE+100;
 var equationFontStyle = { font: "italic 24px Palatino", fill: "#000000", align: "center" };
 
+
+var playerXArray = [];
+var playerYArray = [];
+var playerArrayPosition = 0;
+var playerTraversing = false;
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -124,6 +130,8 @@ BasicGame.Game = function (game) {
   var currentXExponent = null;
   var currentConstant = null;
 
+
+
 	//	When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
 
     this.game;		//	a reference to the currently running game
@@ -165,6 +173,8 @@ this.drawGrid(this.gridBMD.ctx);
         this.playerBMD.addToWorld();
 this.playerBMD.strokeStyle = '#ffffff';
 
+
+
 this.equationGameGraphic = this.game.add.graphics(0, 0);
 
 this.userEquation = Object.create(equationEntity);
@@ -201,14 +211,70 @@ this.userEquation = Object.create(equationEntity);
 
   commitToMove: function() {
   var bmd = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
+
 bmd.dirty = true;
 bmd.addToWorld();
           this.userEquation2 = Object.create(equationEntity);
-  this.userEquation2.initializeEquationSettings(this.currentXCoefficient , this.currentXExponent, this.currentConstant, 60);
+  this.userEquation2.initializeEquationSettings(this.currentXCoefficient , this.currentXExponent, this.currentConstant, 600);
   console.dir(bmd);
   //  this.userEquation2.draw(bmd.ctx);
-  this.drawEquationWithGameGraphics(this.userEquation2, this.equationGameGraphic);  
-    console.dir(this.userEquation2.pointsArray); 
+  this.drawEquationWithGameGraphics(this.userEquation2, this.equationGameGraphic);
+console.dir(this.game);
+
+  for (var i = 0; i < this.userEquation2.pointsArray.length; i++) {
+    if (this.userEquation2.pointsArray[i].visible) {
+  // console.log('visible point ' + i + ':' + this.userEquation2.pointsArray[i].x + ', ' + this.userEquation2.pointsArray[i].y);
+    playerXArray.push(this.userEquation2.pointsArray[i].x);
+    playerYArray.push(this.userEquation2.pointsArray[i].y);
+   //    console.log('player Array ' + i + ':' + playerXArray[i].x + ', ' + playerYArray[i].y);
+
+ }
+  }
+  playerTraversing = true;
+
+
+/*
+     tweenXArray.push(this.userEquation2.pointsArray[i].x);
+    tweenYArray.push(this.userEquation2.pointsArray[i].y);
+      }
+      console.log('tweenXArray: ' + tweenXArray);
+      console.log('tweenXArray: ' + tweenXArray);
+
+      var tween = this.game.add.tween(this.commitButton).to({
+    x: [300, 800,  900, 0],
+    y: [600,  600, 200, 0],
+    angle: [360]
+}, 5000).interpolation(function(v, k){
+    return Phaser.Math.catmullRomInterpolation(v, k);
+});
+*/
+ //     Phaser.Math.linearInterpolation
+ //     this.animateSpriteAlongPoints(this.commitButton, tweenXArray, tweenYArray);
+
+ //   var equationTween = this.game.add.tween(this.commitButton).to( { 'x': tweenXArray, 'y': tweenYArray }, 4000, Phaser.Math.linearInterpolation, true);
+ //this.game.add.tween(this.commitButton).to({x: this.userEquation2.pointsArray[i-1].x, y: this.userEquation2.pointsArray[i-1].y },5000, Phaser.Easing.Back.Out, true); 
+// this.game.add.tween(this.commitButton).to({x: tweenXArray, y: tweenYArray },5000, Phaser.Easing.Linear.None, true); 
+ //this.game.add.tween(this.commitButton).to({x: this.userEquation2.pointsArray[i-1].x, y: this.userEquation2.pointsArray[i-1].y },5000, Phaser.Easing.Linear.None, true); 
+
+    console.dir(playerXArray); 
+  },
+
+  animateSpriteAlongPoints: function(theSprite, theXPoints, theYPoints) {
+console.log('in animate Sprite');
+//var tempTimer = this.game.time.create(false);
+for (var i=0; i < theXPoints.length; i++) {
+  this.game.time.events.add(Phaser.Timer.SECOND * .1, this.moveSpriteTo(theSprite, theXPoints[i], theYPoints[i]), this);
+
+ // tempTimer.loop(2000, this.moveSpriteTo(theSprite, theXPoints[i], theYPoints[i]));
+ // tempTimer.start();
+
+}
+  },
+
+  moveSpriteTo: function(theSprite, x, y) {
+    console.log('moving sprite');
+    theSprite.x = x;
+    theSprite.y = y;
   },
 
   drawEquationWithGameGraphics: function(currentEquation, currentGameGraphic) {
@@ -264,6 +330,20 @@ drawGrid: function(gridContext) {
 
 
 	update: function () {
+    //console.log('in update: ' + this.playerArrayPosition, this.playerXArray.length );
+    if (playerTraversing) {
+      //console.log('updating button position');
+   //      console.log('button position of ' + playerArrayPosition + ':' + playerXArray[playerArrayPosition] + ', ' + playerYArray[playerArrayPosition]);
+
+             this.commitButton.x = playerXArray[playerArrayPosition];
+            this.commitButton.y = playerYArray[playerArrayPosition];
+            playerArrayPosition++;
+            if (playerArrayPosition > playerXArray.length) {
+              playerArrayPosition = 0;
+              playerTraversing = false;
+
+}
+          }
     
 	},
 
