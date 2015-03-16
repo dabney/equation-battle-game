@@ -15,6 +15,8 @@ var equationFontStyle = { font: "italic 24px Palatino", fill: "#000000", align: 
 
 var playerXArray = [];
 var playerYArray = [];
+var playerRotationArray = [0];
+
 var playerArrayPosition = 0;
 var playerTraversing = false;
 
@@ -206,6 +208,8 @@ this.userEquation = Object.create(equationEntity);
     this.commitButton.input.useHandCursor = true;
 
     this.alien = this.game.add.sprite(100, 180, 'equationBattleImages', 'Alienhead000.png');
+            this.alien.anchor.setTo(0.5, 0.5);
+
     // add animation phases
     this.alien.animations.add('eat', [
         'Alienhead001.png',
@@ -239,12 +243,19 @@ console.dir(this.game);
   for (var i = 0; i < this.userEquation2.pointsArray.length; i++) {
     if (this.userEquation2.pointsArray[i].visible) {
   // console.log('visible point ' + i + ':' + this.userEquation2.pointsArray[i].x + ', ' + this.userEquation2.pointsArray[i].y);
+
     playerXArray.push(this.userEquation2.pointsArray[i].x);
     playerYArray.push(this.userEquation2.pointsArray[i].y);
+if (i > 0) {
+    playerRotationArray.push(Math.atan2(playerYArray[i] - playerYArray[i-1], playerXArray[i] - playerXArray[i-1]));
+   //     if (player.rotation < 0) {
+     //     player.rotation += 2*Math.PI;
+          }
    //    console.log('player Array ' + i + ':' + playerXArray[i].x + ', ' + playerYArray[i].y);
 
  }
-  }
+}
+  
   playerTraversing = true;
 
 
@@ -352,6 +363,8 @@ drawGrid: function(gridContext) {
 
              this.alien.x = playerXArray[playerArrayPosition];
             this.alien.y = playerYArray[playerArrayPosition];
+            this.alien.rotation = playerRotationArray[playerArrayPosition];
+            console.log('alien rotation: ' + this.alien.rotation);
             playerArrayPosition++;
             if (playerArrayPosition > playerXArray.length) {
               playerArrayPosition = 0;
