@@ -1,8 +1,72 @@
 {"frames": [
 
 {
+	"filename": "Alienhead000.png",
+	"frame": {"x":2,"y":2,"w":50,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
+	"sourceSize": {"w":50,"h":50}
+},
+{
+	"filename": "Alienhead001.png",
+	"frame": {"x":54,"y":2,"w":50,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
+	"sourceSize": {"w":50,"h":50}
+},
+{
+	"filename": "Alienhead002.png",
+	"frame": {"x":106,"y":2,"w":50,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
+	"sourceSize": {"w":50,"h":50}
+},
+{
+	"filename": "Alienhead003.png",
+	"frame": {"x":158,"y":2,"w":50,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
+	"sourceSize": {"w":50,"h":50}
+},
+{
+	"filename": "Alienhead004.png",
+	"frame": {"x":2,"y":54,"w":50,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
+	"sourceSize": {"w":50,"h":50}
+},
+{
+	"filename": "Alienhead005.png",
+	"frame": {"x":54,"y":54,"w":50,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
+	"sourceSize": {"w":50,"h":50}
+},
+{
+	"filename": "Alienhead006.png",
+	"frame": {"x":106,"y":54,"w":50,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
+	"sourceSize": {"w":50,"h":50}
+},
+{
+	"filename": "Alienhead007.png",
+	"frame": {"x":158,"y":54,"w":50,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
+	"sourceSize": {"w":50,"h":50}
+},
+{
 	"filename": "boxsmall.png",
-	"frame": {"x":2,"y":2,"w":70,"h":70},
+	"frame": {"x":2,"y":106,"w":70,"h":70},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":70,"h":70},
@@ -10,7 +74,7 @@
 },
 {
 	"filename": "buttonOut.png",
-	"frame": {"x":74,"y":2,"w":50,"h":44},
+	"frame": {"x":74,"y":106,"w":50,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":44},
@@ -18,7 +82,7 @@
 },
 {
 	"filename": "buttonOver.png",
-	"frame": {"x":2,"y":74,"w":50,"h":44},
+	"frame": {"x":126,"y":106,"w":50,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":44},
@@ -26,7 +90,7 @@
 },
 {
 	"filename": "woodtile.png",
-	"frame": {"x":54,"y":74,"w":50,"h":50},
+	"frame": {"x":178,"y":106,"w":50,"h":50},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
@@ -37,8 +101,8 @@
 	"version": "1.0",
 	"image": "equation_battle.png",
 	"format": "RGBA8888",
-	"size": {"w":128,"h":128},
+	"size": {"w":256,"h":256},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:09004f30754049696742159a8d26536d:1/1$"
+	"smartupdate": "$TexturePacker:SmartUpdate:15151c97b0fadf77ca9a55cff49f3b2e:1/1$"
 }
 }

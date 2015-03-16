@@ -204,6 +204,21 @@ this.userEquation = Object.create(equationEntity);
 
   this.commitButton = this.add.button(160, 210, 'equationBattleImages', this.commitToMove, this, 'buttonOver.png', 'buttonOut.png', 'buttonOver.png');
     this.commitButton.input.useHandCursor = true;
+
+    this.alien = this.game.add.sprite(100, 180, 'equationBattleImages', 'Alienhead000.png');
+    // add animation phases
+    this.alien.animations.add('eat', [
+        'Alienhead001.png',
+        'Alienhead002.png',
+        'Alienhead003.png',
+        'Alienhead004.png',
+        'Alienhead005.png',
+        'Alienhead006.png',
+        'Alienhead007.png',
+    ], 10, true, false);
+
+    // play animation
+    this.alien.animations.play('eat');
 //        this.bmdsprite = this.add.sprite(240, 240, this.bmd);
 //		this.bmdsprite.anchor.setTo(0.5, 0.5);
      
@@ -335,8 +350,8 @@ drawGrid: function(gridContext) {
       //console.log('updating button position');
    //      console.log('button position of ' + playerArrayPosition + ':' + playerXArray[playerArrayPosition] + ', ' + playerYArray[playerArrayPosition]);
 
-             this.commitButton.x = playerXArray[playerArrayPosition];
-            this.commitButton.y = playerYArray[playerArrayPosition];
+             this.alien.x = playerXArray[playerArrayPosition];
+            this.alien.y = playerYArray[playerArrayPosition];
             playerArrayPosition++;
             if (playerArrayPosition > playerXArray.length) {
               playerArrayPosition = 0;
