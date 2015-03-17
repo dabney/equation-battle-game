@@ -34,7 +34,7 @@
 },
 {
 	"filename": "Alienhead004.png",
-	"frame": {"x":2,"y":54,"w":50,"h":50},
+	"frame": {"x":210,"y":2,"w":50,"h":50},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
@@ -42,7 +42,7 @@
 },
 {
 	"filename": "Alienhead005.png",
-	"frame": {"x":54,"y":54,"w":50,"h":50},
+	"frame": {"x":262,"y":2,"w":50,"h":50},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
@@ -50,7 +50,7 @@
 },
 {
 	"filename": "Alienhead006.png",
-	"frame": {"x":106,"y":54,"w":50,"h":50},
+	"frame": {"x":314,"y":2,"w":50,"h":50},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
@@ -58,15 +58,31 @@
 },
 {
 	"filename": "Alienhead007.png",
-	"frame": {"x":158,"y":54,"w":50,"h":50},
+	"frame": {"x":366,"y":2,"w":50,"h":50},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
 	"sourceSize": {"w":50,"h":50}
 },
 {
+	"filename": "background.png",
+	"frame": {"x":2,"y":54,"w":800,"h":480},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":800,"h":480},
+	"sourceSize": {"w":800,"h":480}
+},
+{
+	"filename": "bacon.png",
+	"frame": {"x":804,"y":54,"w":45,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":32},
+	"sourceSize": {"w":45,"h":32}
+},
+{
 	"filename": "boxsmall.png",
-	"frame": {"x":2,"y":106,"w":70,"h":70},
+	"frame": {"x":851,"y":54,"w":70,"h":70},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":70,"h":70},
@@ -74,7 +90,7 @@
 },
 {
 	"filename": "buttonOut.png",
-	"frame": {"x":74,"y":106,"w":50,"h":44},
+	"frame": {"x":923,"y":54,"w":50,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":44},
@@ -82,15 +98,23 @@
 },
 {
 	"filename": "buttonOver.png",
-	"frame": {"x":126,"y":106,"w":50,"h":44},
+	"frame": {"x":2,"y":536,"w":50,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":44},
 	"sourceSize": {"w":50,"h":44}
 },
 {
+	"filename": "groundGrass.png",
+	"frame": {"x":54,"y":536,"w":808,"h":71},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":808,"h":71},
+	"sourceSize": {"w":808,"h":71}
+},
+{
 	"filename": "pickup000.png",
-	"frame": {"x":178,"y":106,"w":65,"h":65},
+	"frame": {"x":864,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -98,7 +122,7 @@
 },
 {
 	"filename": "pickup001.png",
-	"frame": {"x":2,"y":178,"w":65,"h":65},
+	"frame": {"x":931,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -106,7 +130,7 @@
 },
 {
 	"filename": "pickup002.png",
-	"frame": {"x":69,"y":178,"w":65,"h":65},
+	"frame": {"x":2,"y":609,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -114,7 +138,7 @@
 },
 {
 	"filename": "pickup003.png",
-	"frame": {"x":136,"y":178,"w":65,"h":65},
+	"frame": {"x":69,"y":609,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -122,7 +146,7 @@
 },
 {
 	"filename": "pickup004.png",
-	"frame": {"x":2,"y":245,"w":65,"h":65},
+	"frame": {"x":136,"y":609,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -130,7 +154,7 @@
 },
 {
 	"filename": "pickup005.png",
-	"frame": {"x":69,"y":245,"w":65,"h":65},
+	"frame": {"x":203,"y":609,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -138,7 +162,7 @@
 },
 {
 	"filename": "pickup006.png",
-	"frame": {"x":136,"y":245,"w":65,"h":65},
+	"frame": {"x":270,"y":609,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -146,7 +170,7 @@
 },
 {
 	"filename": "pickup007.png",
-	"frame": {"x":2,"y":312,"w":65,"h":65},
+	"frame": {"x":337,"y":609,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -154,7 +178,7 @@
 },
 {
 	"filename": "pickup008.png",
-	"frame": {"x":69,"y":312,"w":65,"h":65},
+	"frame": {"x":404,"y":609,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -162,7 +186,7 @@
 },
 {
 	"filename": "pickup009.png",
-	"frame": {"x":136,"y":312,"w":65,"h":65},
+	"frame": {"x":471,"y":609,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -170,7 +194,7 @@
 },
 {
 	"filename": "pickup010.png",
-	"frame": {"x":2,"y":379,"w":65,"h":65},
+	"frame": {"x":538,"y":609,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -178,15 +202,47 @@
 },
 {
 	"filename": "pickup011.png",
-	"frame": {"x":69,"y":379,"w":65,"h":65},
+	"frame": {"x":605,"y":609,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
 	"sourceSize": {"w":65,"h":65}
 },
 {
+	"filename": "planeRed1.png",
+	"frame": {"x":672,"y":609,"w":88,"h":73},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
+	"sourceSize": {"w":88,"h":73}
+},
+{
+	"filename": "planeRed2.png",
+	"frame": {"x":762,"y":609,"w":88,"h":73},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
+	"sourceSize": {"w":88,"h":73}
+},
+{
+	"filename": "planeRed3.png",
+	"frame": {"x":852,"y":609,"w":88,"h":73},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
+	"sourceSize": {"w":88,"h":73}
+},
+{
+	"filename": "starGold.png",
+	"frame": {"x":942,"y":609,"w":39,"h":38},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":39,"h":38},
+	"sourceSize": {"w":39,"h":38}
+},
+{
 	"filename": "woodtile.png",
-	"frame": {"x":136,"y":379,"w":50,"h":50},
+	"frame": {"x":2,"y":684,"w":50,"h":50},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
@@ -197,8 +253,8 @@
 	"version": "1.0",
 	"image": "equation_battle.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":512},
+	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:b2f6ba394453ef178b366a3fb2873cff:1/1$"
+	"smartupdate": "$TexturePacker:SmartUpdate:ef152d319f238db80d81d713fefcad63:1/1$"
 }
 }

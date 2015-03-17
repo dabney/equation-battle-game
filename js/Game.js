@@ -74,7 +74,7 @@ else {
         };
 
 function xCoefficientGamePiece(game, originX, originY, value, destinationX, destinationY) {
-  TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY);
+ TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY);
 };
 xCoefficientGamePiece.prototype = Object.create(TextGamePiece.prototype);
 xCoefficientGamePiece.prototype.constructor = xCoefficientGamePiece;
@@ -164,12 +164,15 @@ BasicGame.Game.prototype = {
 
 	create: function () {
 var currentGamePiece;
+
+var backgroundSprite = this.add.sprite(0,0, 'equationBattleImages', 'background.png');
+backgroundSprite.scale.y = 2;
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	this.gridBMD = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
 				this.gridBMD.dirty = true;
 				this.gridBMD.addToWorld();
-this.gridBMD.strokeStyle = '#f00';
+this.gridBMD.strokeStyle = 'white';
 this.drawGrid(this.gridBMD.ctx);
 
   this.playerBMD = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
@@ -182,11 +185,14 @@ this.playerBMD.strokeStyle = '#ffffff';
 this.equationGameGraphic = this.game.add.graphics(0, 0);
 
 this.userEquation = Object.create(equationEntity);
-  this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), 2, getRandomInt(-3, 3), 10);
+  this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), 2, getRandomInt(-3, 3), 20);
 
 //	this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0, 3), getRandomInt(-3, 3), 60);
 		this.userEquation.draw(this.gridBMD.ctx);
     for (var i=0; i < this.userEquation.pointsArray.length; i++) {
+                this.pickupPiece[i] = this.game.add.sprite(this.userEquation.pointsArray[i].x, this.userEquation.pointsArray[i].y, 'equationBattleImages', 'starGold.png');
+            this.pickupPiece[i].anchor.setTo(0.5, 0.5);
+/*
             this.pickupPiece[i] = this.game.add.sprite(this.userEquation.pointsArray[i].x, this.userEquation.pointsArray[i].y, 'equationBattleImages', 'pickup000.png');
             this.pickupPiece[i].anchor.setTo(0.5, 0.5);
 
@@ -208,6 +214,7 @@ this.userEquation = Object.create(equationEntity);
 
     // play animation
     this.pickupPiece[i].animations.play('spin');
+    */
     }
 
         this.xCoefficientBox = this.add.sprite(XCOEFFPOSITIONX, XCOEFFPOSITIONY, 'equationBattleImages', 'boxsmall.png');
@@ -231,25 +238,20 @@ this.userEquation = Object.create(equationEntity);
         this.constantGamePieces.add(currentGamePiece);
        };
 
-  this.commitButton = this.add.button(160, 210, 'equationBattleImages', this.commitToMove, this, 'buttonOver.png', 'buttonOut.png', 'buttonOver.png');
+  this.commitButton = this.add.button(480, GRAPHSIZE + 100, 'equationBattleImages', this.commitToMove, this, 'buttonOver.png', 'buttonOut.png', 'buttonOver.png');
     this.commitButton.input.useHandCursor = true;
 
-    this.alien = this.game.add.sprite(100, 180, 'equationBattleImages', 'Alienhead000.png');
+    this.alien = this.game.add.sprite(100, 180, 'equationBattleImages', 'planeRed1.png');
             this.alien.anchor.setTo(0.5, 0.5);
 
     // add animation phases
-    this.alien.animations.add('eat', [
-        'Alienhead001.png',
-        'Alienhead002.png',
-        'Alienhead003.png',
-        'Alienhead004.png',
-        'Alienhead005.png',
-        'Alienhead006.png',
-        'Alienhead007.png'
+    this.alien.animations.add('fly', [
+        'planeRed2.png',
+        'planeRed3.png'
     ], 5, true, false);
 
     // play animation
-    this.alien.animations.play('eat');
+    this.alien.animations.play('fly');
 //        this.bmdsprite = this.add.sprite(240, 240, this.bmd);
 //		this.bmdsprite.anchor.setTo(0.5, 0.5);
    
@@ -349,7 +351,7 @@ drawGrid: function(gridContext) {
   //  console.log('in drawGrid: ' + GRAPHLOCX + ', ' +GRAPHLOCY + ', ' + GRAPHSIZE)
 	gridContext.save();
 	gridContext.translate(GRAPHLOCX, GRAPHLOCY);
-	gridContext.fillStyle = "rgba(0, 256, 0, .5)";
+	//gridContext.fillStyle = "rgba(0, 256, 0, .5)";
 	gridContext.strokeStyle = "rgba(0, 256, 0, .5)";
 	gridContext.beginPath();
 	//draw y axis
@@ -387,6 +389,7 @@ drawGrid: function(gridContext) {
 	update: function () {
     //console.log('in update: ' + this.playerArrayPosition, this.playerXArray.length );
     if (playerTraversing) {
+         // game.physics.arcade.collide(this.alien, sprite2, collisionCallback, processCallback, this);
       //console.log('updating button position');
    //      console.log('button position of ' + playerArrayPosition + ':' + playerXArray[playerArrayPosition] + ', ' + playerYArray[playerArrayPosition]);
 
