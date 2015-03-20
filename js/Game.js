@@ -192,6 +192,10 @@ this.userEquation = Object.create(equationEntity);
     for (var i=0; i < this.userEquation.pointsArray.length; i++) {
                 this.pickupPiece[i] = this.game.add.sprite(this.userEquation.pointsArray[i].x, this.userEquation.pointsArray[i].y, 'equationBattleImages', 'starGold.png');
             this.pickupPiece[i].anchor.setTo(0.5, 0.5);
+                        this.pickupPiece[i].scale.x = 0.5;
+                                                this.pickupPiece[i].scale.y = 0.5;
+
+
 /*
             this.pickupPiece[i] = this.game.add.sprite(this.userEquation.pointsArray[i].x, this.userEquation.pointsArray[i].y, 'equationBattleImages', 'pickup000.png');
             this.pickupPiece[i].anchor.setTo(0.5, 0.5);
@@ -241,22 +245,26 @@ this.userEquation = Object.create(equationEntity);
   this.commitButton = this.add.button(480, GRAPHSIZE + 100, 'equationBattleImages', this.commitToMove, this, 'buttonOver.png', 'buttonOut.png', 'buttonOver.png');
     this.commitButton.input.useHandCursor = true;
 
-    this.alien = this.game.add.sprite(100, 180, 'equationBattleImages', 'planeRed1.png');
-            this.alien.anchor.setTo(0.5, 0.5);
+    this.airplane = this.game.add.sprite(100, 180, 'equationBattleImages', 'planeRed1.png');
+            this.airplane.anchor.setTo(0.5, 0.5);
+                                    this.airplane.scale.x = 0.5;
+                                                this.airplane.scale.y = 0.5;
 
     // add animation phases
-    this.alien.animations.add('fly', [
+    this.airplane.animations.add('fly', [
         'planeRed2.png',
         'planeRed3.png'
-    ], 5, true, false);
+    ], 10, true, false);
 
     // play animation
-    this.alien.animations.play('fly');
+    this.airplane.animations.play('fly');
 //        this.bmdsprite = this.add.sprite(240, 240, this.bmd);
 //		this.bmdsprite.anchor.setTo(0.5, 0.5);
    
 //        this.bmdsprite = this.add.sprite(240, 240, this.bmd);
 //    this.bmdsprite.anchor.setTo(0.5, 0.5);
+           this.game.physics.enable([this.airplane], Phaser.Physics.ARCADE);
+           this.game.physics.enable([playerXArray], Phaser.Physics.ARCADE);
 	},
 
   commitToMove: function() {
@@ -389,13 +397,20 @@ drawGrid: function(gridContext) {
 	update: function () {
     //console.log('in update: ' + this.playerArrayPosition, this.playerXArray.length );
     if (playerTraversing) {
+ 
+ this.game.physics.arcade.collide(this.airplane, playerXArray[playerArrayPosition], this.collisionCallback, this.processCallback, this);
          // game.physics.arcade.collide(this.alien, sprite2, collisionCallback, processCallback, this);
       //console.log('updating button position');
    //      console.log('button position of ' + playerArrayPosition + ':' + playerXArray[playerArrayPosition] + ', ' + playerYArray[playerArrayPosition]);
 
-             this.alien.x = playerXArray[playerArrayPosition];
-            this.alien.y = playerYArray[playerArrayPosition];
-            this.alien.rotation = playerRotationArray[playerArrayPosition];
+             this.airplane.x = playerXArray[playerArrayPosition];
+            this.airplane.y = playerYArray[playerArrayPosition];
+            this.airplane.rotation = playerRotationArray[playerArrayPosition];
+            for (var i = 0; i < this.pickupPiece.length; i++) {
+            if (this.game.physics.arcade.distanceToXY( this.airplane , this.pickupPiece[i].x, this.pickupPiece[i].y) < 3) {
+              this.collisionCallback(this.airplane, this.pickupPiece[i]);
+            }
+          }
           //  console.log('alien rotation: ' + this.alien.rotation);
             playerArrayPosition++;
             if (playerArrayPosition > playerXArray.length) {
@@ -406,6 +421,16 @@ drawGrid: function(gridContext) {
           }
     
 	},
+
+ processCallback: function(sprite1, sprite2) {
+    console.log('in processCallback');
+  },
+
+  collisionCallback: function(sprite1, sprite2) {
+    console.log('in collisionCallback');
+    sprite2.x = 600;
+    sprite2.y = 700;
+  },
 
     backToMenu: function (pointer) {
 
