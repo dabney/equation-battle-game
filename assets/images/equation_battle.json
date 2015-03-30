@@ -105,16 +105,8 @@
 	"sourceSize": {"w":50,"h":44}
 },
 {
-	"filename": "groundGrass.png",
-	"frame": {"x":54,"y":536,"w":808,"h":71},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":808,"h":71},
-	"sourceSize": {"w":808,"h":71}
-},
-{
 	"filename": "pickup000.png",
-	"frame": {"x":864,"y":536,"w":65,"h":65},
+	"frame": {"x":54,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -122,7 +114,7 @@
 },
 {
 	"filename": "pickup001.png",
-	"frame": {"x":931,"y":536,"w":65,"h":65},
+	"frame": {"x":121,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -130,7 +122,7 @@
 },
 {
 	"filename": "pickup002.png",
-	"frame": {"x":2,"y":609,"w":65,"h":65},
+	"frame": {"x":188,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -138,7 +130,7 @@
 },
 {
 	"filename": "pickup003.png",
-	"frame": {"x":69,"y":609,"w":65,"h":65},
+	"frame": {"x":255,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -146,7 +138,7 @@
 },
 {
 	"filename": "pickup004.png",
-	"frame": {"x":136,"y":609,"w":65,"h":65},
+	"frame": {"x":322,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -154,7 +146,7 @@
 },
 {
 	"filename": "pickup005.png",
-	"frame": {"x":203,"y":609,"w":65,"h":65},
+	"frame": {"x":389,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -162,7 +154,7 @@
 },
 {
 	"filename": "pickup006.png",
-	"frame": {"x":270,"y":609,"w":65,"h":65},
+	"frame": {"x":456,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -170,7 +162,7 @@
 },
 {
 	"filename": "pickup007.png",
-	"frame": {"x":337,"y":609,"w":65,"h":65},
+	"frame": {"x":523,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -178,7 +170,7 @@
 },
 {
 	"filename": "pickup008.png",
-	"frame": {"x":404,"y":609,"w":65,"h":65},
+	"frame": {"x":590,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -186,7 +178,7 @@
 },
 {
 	"filename": "pickup009.png",
-	"frame": {"x":471,"y":609,"w":65,"h":65},
+	"frame": {"x":657,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -194,7 +186,7 @@
 },
 {
 	"filename": "pickup010.png",
-	"frame": {"x":538,"y":609,"w":65,"h":65},
+	"frame": {"x":724,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -202,7 +194,7 @@
 },
 {
 	"filename": "pickup011.png",
-	"frame": {"x":605,"y":609,"w":65,"h":65},
+	"frame": {"x":791,"y":536,"w":65,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
@@ -210,7 +202,7 @@
 },
 {
 	"filename": "planeRed1.png",
-	"frame": {"x":672,"y":609,"w":88,"h":73},
+	"frame": {"x":858,"y":536,"w":88,"h":73},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
@@ -218,7 +210,7 @@
 },
 {
 	"filename": "planeRed2.png",
-	"frame": {"x":762,"y":609,"w":88,"h":73},
+	"frame": {"x":2,"y":611,"w":88,"h":73},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
@@ -226,15 +218,23 @@
 },
 {
 	"filename": "planeRed3.png",
-	"frame": {"x":852,"y":609,"w":88,"h":73},
+	"frame": {"x":92,"y":611,"w":88,"h":73},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
 	"sourceSize": {"w":88,"h":73}
 },
 {
+	"filename": "repeat_1.png",
+	"frame": {"x":182,"y":611,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128}
+},
+{
 	"filename": "starGold.png",
-	"frame": {"x":942,"y":609,"w":39,"h":38},
+	"frame": {"x":312,"y":611,"w":39,"h":38},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":39,"h":38},
@@ -242,7 +242,7 @@
 },
 {
 	"filename": "woodtile.png",
-	"frame": {"x":2,"y":684,"w":50,"h":50},
+	"frame": {"x":353,"y":611,"w":50,"h":50},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
@@ -255,6 +255,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:ef152d319f238db80d81d713fefcad63:1/1$"
+	"smartupdate": "$TexturePacker:SmartUpdate:eda29c6764cd0ed8acffba5699390a9f:1/1$"
 }
 }

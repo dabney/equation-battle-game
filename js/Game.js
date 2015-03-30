@@ -6,12 +6,15 @@ var GRAPHLOCY = 0; // the y value of the upper left corner of the graph
 var TICKMARKSIZE = 5; // length of the tickmarks on the graph
 var XCOEFFPOSITIONX = 100;
 var XCOEFFPOSITIONY = GRAPHSIZE+100;
-var XEXPONENTPOSITIONX = 100 + 100;
-var XEXPONENTPOSITIONY = GRAPHSIZE+100;
-var CONSTANTPOSITIONX = 100 + 100+ 100;
+var XEXPONENTPOSITIONX = 100 + 50;
+var XEXPONENTPOSITIONY = GRAPHSIZE+70;
+var CONSTANTPOSITIONX = 100 + 50+ 50;
 var CONSTANTPOSITIONY = GRAPHSIZE+100;
 var equationFontStyle = { font: "italic 24px Palatino", fill: "#000000", align: "center" };
 
+var validXCoefficients = [-3, -2, -1, 0, 1, 2, 3];
+var validXExponents = [0, 1, 2, 3];
+var validConstants = [-3, -2, -1, 0, 1, 2, 3];
 
 var playerXArray = [];
 var playerYArray = [];
@@ -25,6 +28,25 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+// Fisher-Yates shuffle; implementation by Mike Bostock
+function shuffle(array) {
+  var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
+}
+
 TextGamePiece = function(game, originX, originY, value, destinationX, destinationY) {
   
     Phaser.Sprite.call(this, game, originX, originY, 'equationBattleImages', 'woodtile.png');
@@ -32,8 +54,7 @@ TextGamePiece = function(game, originX, originY, value, destinationX, destinatio
                       game.add.existing(this);
 
 
-    this.textObject = game.add.text(originX, originY, String(value), equationFontStyle);
-                 this.textObject.anchor.setTo(0.5, 0.5);
+    this.createTextObject(originX, originY, value);
 
     this.value = value;
         this.inputEnabled = true;
@@ -48,6 +69,10 @@ TextGamePiece = function(game, originX, originY, value, destinationX, destinatio
 };
 TextGamePiece.prototype = Object.create(Phaser.Sprite.prototype);
 TextGamePiece.prototype.constructor = TextGamePiece;
+TextGamePiece.prototype.createTextObject = function(textLocationX, textLocationY, value) {
+   this.textObject = this.game.add.text(textLocationX, textLocationY, String(value), equationFontStyle);
+                 this.textObject.anchor.setTo(0.5, 0.5);
+               };
 TextGamePiece.prototype.update = function() {
   this.textObject.x = this.x;
   this.textObject.y = this.y;
@@ -78,6 +103,10 @@ function xCoefficientGamePiece(game, originX, originY, value, destinationX, dest
 };
 xCoefficientGamePiece.prototype = Object.create(TextGamePiece.prototype);
 xCoefficientGamePiece.prototype.constructor = xCoefficientGamePiece;
+xCoefficientGamePiece.prototype.createTextObject = function(textLocationX, textLocationY, value) {
+   this.textObject = this.game.add.text(textLocationX, textLocationY, String(value + 'x'), equationFontStyle);
+                 this.textObject.anchor.setTo(0.5, 0.5);
+               };
 xCoefficientGamePiece.prototype.dragRelease = function(item) {
   this.game.currentXCoefficient = item.value;
      if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
@@ -92,7 +121,7 @@ function xExponentGamePiece(game, originX, originY, value, destinationX, destina
   TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY);
 };
 xExponentGamePiece.prototype = Object.create(TextGamePiece.prototype);
-xExponentGamePiece.prototype.constructor = xCoefficientGamePiece;
+xExponentGamePiece.prototype.constructor = xExponentGamePiece;
 xExponentGamePiece.prototype.dragRelease = function(item) {
   this.game.currentXExponent = item.value;
      if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
@@ -107,7 +136,7 @@ function constantGamePiece(game, originX, originY, value, destinationX, destinat
   TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY);
 };
 constantGamePiece.prototype = Object.create(TextGamePiece.prototype);
-constantGamePiece.prototype.constructor = xCoefficientGamePiece;
+constantGamePiece.prototype.constructor = constantGamePiece;
 constantGamePiece.prototype.dragRelease = function(item) {
   this.game.currentConstant = item.value;
      if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
@@ -172,7 +201,6 @@ backgroundSprite.scale.y = 2;
 	this.gridBMD = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
 				this.gridBMD.dirty = true;
 				this.gridBMD.addToWorld();
-this.gridBMD.strokeStyle = 'white';
 this.drawGrid(this.gridBMD.ctx);
 
   this.playerBMD = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
@@ -229,21 +257,30 @@ this.userEquation = Object.create(equationEntity);
         this.constantBox.anchor.setTo(0.5, 0.5);
 
         this.xCoefficientGamePieces = this.add.group();
+        console.dir('xCoefficientGamePieces: ' + this.game.xCoefficientGamePieces);
         this.xExponentGamePieces = this.add.group();
         this.constantGamePieces = this.add.group();
 
+ shuffle(validXCoefficients);
+ shuffle(validXExponents);
+ shuffle(validConstants);
 
       for (var i = 0; i < 2; i++) {
-       currentGamePiece = new xCoefficientGamePiece(this, i*54 + 20, GRAPHSIZE + 20, getRandomInt(-3, 3), XCOEFFPOSITIONX, XCOEFFPOSITIONY);
+       currentGamePiece = new xCoefficientGamePiece(this, i*54 + 20, GRAPHSIZE + 20, validXCoefficients[i], XCOEFFPOSITIONX, XCOEFFPOSITIONY);
         this.xCoefficientGamePieces.add(currentGamePiece);
-              currentGamePiece = new xExponentGamePiece(this, i*54 + 220, GRAPHSIZE + 20, getRandomInt(0, 3), XEXPONENTPOSITIONX, XEXPONENTPOSITIONY);
+        console.log('created game piece');
+        console.dir(this);
+              currentGamePiece = new xExponentGamePiece(this, i*54 + 220, GRAPHSIZE + 20, validXExponents[i], XEXPONENTPOSITIONX, XEXPONENTPOSITIONY);
         this.xExponentGamePieces.add(currentGamePiece);
-              currentGamePiece = new constantGamePiece(this, i*54 + 440, GRAPHSIZE + 20, getRandomInt(-3, 3), CONSTANTPOSITIONX, CONSTANTPOSITIONY);
+              currentGamePiece = new constantGamePiece(this, i*54 + 440, GRAPHSIZE + 20, validConstants[i], CONSTANTPOSITIONX, CONSTANTPOSITIONY);
         this.constantGamePieces.add(currentGamePiece);
        };
-
+console.dir(this.xCoefficientGamePieces);
   this.commitButton = this.add.button(480, GRAPHSIZE + 100, 'equationBattleImages', this.commitToMove, this, 'buttonOver.png', 'buttonOut.png', 'buttonOver.png');
     this.commitButton.input.useHandCursor = true;
+
+  this.resetButton = this.add.button(600, GRAPHSIZE + 100, 'equationBattleImages', this.reset, this, 'repeat_1.png', 'repeat_1.png', 'repeat_1.png');
+    this.resetButton.input.useHandCursor = true;
 
     this.airplane = this.game.add.sprite(100, 180, 'equationBattleImages', 'planeRed1.png');
             this.airplane.anchor.setTo(0.5, 0.5);
@@ -265,7 +302,29 @@ this.userEquation = Object.create(equationEntity);
 //    this.bmdsprite.anchor.setTo(0.5, 0.5);
            this.game.physics.enable([this.airplane], Phaser.Physics.ARCADE);
            this.game.physics.enable([playerXArray], Phaser.Physics.ARCADE);
+
+           this.game.score = 0;
+
+           this.game.scoreTextObject = this.game.add.text(550, 700,  String(this.game.score), equationFontStyle);
 	},
+
+  reset: function() {
+     shuffle(validXCoefficients);
+ shuffle(validXExponents);
+ shuffle(validConstants);
+ console.log('in reset');
+       console.dir(this.game);
+
+      for (var i = 0; i < 2; i++) {
+        console.dir('current value: ' + this.game.xCoefficientGamePieces);
+       this.xCoefficientGamePieces.children[i].value = validXCoefficients[i];
+              this.xCoefficientGamePieces.children[i].textObject.text = String(this.xCoefficientGamePieces.children[i].value + 'x');
+
+        this.xExponentGamePieces.children[i].value = validXExponents[i];
+        this.constantGamePieces.children[i].value = validConstants[i];
+       };
+
+  },
 
   commitToMove: function() {
   var bmd = this.game.make.bitmapData(GRAPHSIZE, GRAPHSIZE);
@@ -360,7 +419,7 @@ drawGrid: function(gridContext) {
 	gridContext.save();
 	gridContext.translate(GRAPHLOCX, GRAPHLOCY);
 	//gridContext.fillStyle = "rgba(0, 256, 0, .5)";
-	gridContext.strokeStyle = "rgba(0, 256, 0, .5)";
+	gridContext.strokeStyle = "rgba(0, 0, 0, .5)";
 	gridContext.beginPath();
 	//draw y axis
 	gridContext.moveTo(GRAPHSIZE/2, 0);
@@ -398,7 +457,7 @@ drawGrid: function(gridContext) {
     //console.log('in update: ' + this.playerArrayPosition, this.playerXArray.length );
     if (playerTraversing) {
  
- this.game.physics.arcade.collide(this.airplane, playerXArray[playerArrayPosition], this.collisionCallback, this.processCallback, this);
+ //this.game.physics.arcade.collide(this.airplane, playerXArray[playerArrayPosition], this.collisionCallback, this.processCallback, this);
          // game.physics.arcade.collide(this.alien, sprite2, collisionCallback, processCallback, this);
       //console.log('updating button position');
    //      console.log('button position of ' + playerArrayPosition + ':' + playerXArray[playerArrayPosition] + ', ' + playerYArray[playerArrayPosition]);
@@ -407,7 +466,7 @@ drawGrid: function(gridContext) {
             this.airplane.y = playerYArray[playerArrayPosition];
             this.airplane.rotation = playerRotationArray[playerArrayPosition];
             for (var i = 0; i < this.pickupPiece.length; i++) {
-            if (this.game.physics.arcade.distanceToXY( this.airplane , this.pickupPiece[i].x, this.pickupPiece[i].y) < 3) {
+            if (this.game.physics.arcade.distanceToXY( this.airplane , this.pickupPiece[i].x, this.pickupPiece[i].y) < 10) {
               this.collisionCallback(this.airplane, this.pickupPiece[i]);
             }
           }
@@ -427,9 +486,17 @@ drawGrid: function(gridContext) {
   },
 
   collisionCallback: function(sprite1, sprite2) {
+    var tempTween;
     console.log('in collisionCallback');
-    sprite2.x = 600;
-    sprite2.y = 700;
+   // sprite2.x = 600;
+   // sprite2.y = 700;
+   this.game.score++;
+   this.game.scoreTextObject.text = String(this.game.score);
+sprite2.kill();
+    tempTween = this.game.add.tween(sprite2).to({x: 600, y: 700 }, 500, Phaser.Easing.Back.Out, true);
+    tempTween.onComplete.add(function() {
+      //sprite2.kill();
+    });
   },
 
     backToMenu: function (pointer) {
