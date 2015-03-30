@@ -73,6 +73,12 @@ TextGamePiece.prototype.createTextObject = function(textLocationX, textLocationY
    this.textObject = this.game.add.text(textLocationX, textLocationY, String(value), equationFontStyle);
                  this.textObject.anchor.setTo(0.5, 0.5);
                };
+TextGamePiece.prototype.resetValue = function(newValue) {
+  this.value = newValue;
+  this.textObject.text = String(newValue);
+  this.x = this.originX;
+    this.y = this.originY;
+};
 TextGamePiece.prototype.update = function() {
   this.textObject.x = this.x;
   this.textObject.y = this.y;
@@ -107,6 +113,8 @@ xCoefficientGamePiece.prototype.createTextObject = function(textLocationX, textL
    this.textObject = this.game.add.text(textLocationX, textLocationY, String(value + 'x'), equationFontStyle);
                  this.textObject.anchor.setTo(0.5, 0.5);
                };
+
+
 xCoefficientGamePiece.prototype.dragRelease = function(item) {
   this.game.currentXCoefficient = item.value;
      if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
@@ -122,6 +130,13 @@ function xExponentGamePiece(game, originX, originY, value, destinationX, destina
 };
 xExponentGamePiece.prototype = Object.create(TextGamePiece.prototype);
 xExponentGamePiece.prototype.constructor = xExponentGamePiece;
+xExponentGamePiece.prototype.resetValue = function(newValue) {
+  this.value = newValue;
+  this.textObject.text = String(newValue);
+  this.x = this.originX;
+    this.y = this.originY;
+
+};
 xExponentGamePiece.prototype.dragRelease = function(item) {
   this.game.currentXExponent = item.value;
      if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
@@ -137,6 +152,7 @@ function constantGamePiece(game, originX, originY, value, destinationX, destinat
 };
 constantGamePiece.prototype = Object.create(TextGamePiece.prototype);
 constantGamePiece.prototype.constructor = constantGamePiece;
+
 constantGamePiece.prototype.dragRelease = function(item) {
   this.game.currentConstant = item.value;
      if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
@@ -222,6 +238,7 @@ this.userEquation = Object.create(equationEntity);
             this.pickupPiece[i].anchor.setTo(0.5, 0.5);
                         this.pickupPiece[i].scale.x = 0.5;
                                                 this.pickupPiece[i].scale.y = 0.5;
+                                                this.pickupPiece[i].collected = false;
 
 
 /*
@@ -317,11 +334,13 @@ console.dir(this.xCoefficientGamePieces);
 
       for (var i = 0; i < 2; i++) {
         console.dir('current value: ' + this.game.xCoefficientGamePieces);
-       this.xCoefficientGamePieces.children[i].value = validXCoefficients[i];
-              this.xCoefficientGamePieces.children[i].textObject.text = String(this.xCoefficientGamePieces.children[i].value + 'x');
+             this.xCoefficientGamePieces.children[i].resetValue(validXCoefficients[i]);
 
-        this.xExponentGamePieces.children[i].value = validXExponents[i];
-        this.constantGamePieces.children[i].value = validConstants[i];
+   //   h tis.xCoefficientGamePieces.children[i].value = validXCoefficients[i];
+   //           this.xCoefficientGamePieces.children[i].textObject.text = String(this.xCoefficientGamePieces.children[i].value + 'x');
+             this.xExponentGamePieces.children[i].resetValue(validXExponents[i]);
+
+        this.constantGamePieces.children[i].resetValue(validConstants[i]);
        };
 
   },
@@ -466,9 +485,11 @@ drawGrid: function(gridContext) {
             this.airplane.y = playerYArray[playerArrayPosition];
             this.airplane.rotation = playerRotationArray[playerArrayPosition];
             for (var i = 0; i < this.pickupPiece.length; i++) {
+              if (!this.pickupPiece[i].collected) {
             if (this.game.physics.arcade.distanceToXY( this.airplane , this.pickupPiece[i].x, this.pickupPiece[i].y) < 10) {
               this.collisionCallback(this.airplane, this.pickupPiece[i]);
             }
+          }
           }
           //  console.log('alien rotation: ' + this.alien.rotation);
             playerArrayPosition++;
@@ -492,7 +513,8 @@ drawGrid: function(gridContext) {
    // sprite2.y = 700;
    this.game.score++;
    this.game.scoreTextObject.text = String(this.game.score);
-sprite2.kill();
+   sprite2.collected = true;
+//sprite2.kill();
     tempTween = this.game.add.tween(sprite2).to({x: 600, y: 700 }, 500, Phaser.Easing.Back.Out, true);
     tempTween.onComplete.add(function() {
       //sprite2.kill();
