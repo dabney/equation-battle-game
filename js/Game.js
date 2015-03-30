@@ -4,6 +4,7 @@ var GRAPHSIZE = MAXGRAPHSIZE; // the width and height in pixels of the graph - r
 var GRAPHLOCX = 0; // the x value upper left corner of the graph
 var GRAPHLOCY = 0; // the y value of the upper left corner of the graph
 var TICKMARKSIZE = 5; // length of the tickmarks on the graph
+var NUMEQUATIONPOINTS = 20;
 var XCOEFFPOSITIONX = 100;
 var XCOEFFPOSITIONY = GRAPHSIZE+100;
 var XEXPONENTPOSITIONX = 100 + 50;
@@ -25,7 +26,7 @@ var playerTraversing = false;
 
 
 function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // Fisher-Yates shuffle; implementation by Mike Bostock
@@ -229,7 +230,7 @@ this.playerBMD.strokeStyle = '#ffffff';
 this.equationGameGraphic = this.game.add.graphics(0, 0);
 
 this.userEquation = Object.create(equationEntity);
-  this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), 2, getRandomInt(-3, 3), 20);
+  this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0, 3), getRandomInt(-3, 3), NUMEQUATIONPOINTS);
 
 //	this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0, 3), getRandomInt(-3, 3), 60);
 		this.userEquation.draw(this.gridBMD.ctx);
@@ -240,30 +241,6 @@ this.userEquation = Object.create(equationEntity);
                                                 this.pickupPiece[i].scale.y = 0.5;
                                                 this.pickupPiece[i].collected = false;
 
-
-/*
-            this.pickupPiece[i] = this.game.add.sprite(this.userEquation.pointsArray[i].x, this.userEquation.pointsArray[i].y, 'equationBattleImages', 'pickup000.png');
-            this.pickupPiece[i].anchor.setTo(0.5, 0.5);
-
-    // add animation phases
-    this.pickupPiece[i].animations.add('spin', [
-        'pickup001.png',
-        'pickup002.png',
-        'pickup003.png',
-        'pickup004.png',
-        'pickup005.png',
-        'pickup006.png',
-        'pickup007.png',
-        'pickup008.png',
-        'pickup009.png',
-        'pickup010.png',
-        'pickup011.png'
-
-    ], 5, true, false);
-
-    // play animation
-    this.pickupPiece[i].animations.play('spin');
-    */
     }
 
         this.xCoefficientBox = this.add.sprite(XCOEFFPOSITIONX, XCOEFFPOSITIONY, 'equationBattleImages', 'boxsmall.png');
@@ -326,23 +303,31 @@ console.dir(this.xCoefficientGamePieces);
 	},
 
   reset: function() {
-     shuffle(validXCoefficients);
- shuffle(validXExponents);
- shuffle(validConstants);
- console.log('in reset');
-       console.dir(this.game);
-
+    shuffle(validXCoefficients);
+    shuffle(validXExponents);
+    shuffle(validConstants);
       for (var i = 0; i < 2; i++) {
-        console.dir('current value: ' + this.game.xCoefficientGamePieces);
-             this.xCoefficientGamePieces.children[i].resetValue(validXCoefficients[i]);
-
-   //   h tis.xCoefficientGamePieces.children[i].value = validXCoefficients[i];
-   //           this.xCoefficientGamePieces.children[i].textObject.text = String(this.xCoefficientGamePieces.children[i].value + 'x');
-             this.xExponentGamePieces.children[i].resetValue(validXExponents[i]);
-
+        this.xCoefficientGamePieces.children[i].resetValue(validXCoefficients[i]);
+        this.xExponentGamePieces.children[i].resetValue(validXExponents[i]);
         this.constantGamePieces.children[i].resetValue(validConstants[i]);
        };
+  this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0, 3), getRandomInt(-3, 3), NUMEQUATIONPOINTS);
+  this.gridBMD.clear();
+  this.drawGrid(this.gridBMD.ctx);
 
+      this.userEquation.draw(this.gridBMD.ctx);
+
+    for (var i=0; i < this.userEquation.pointsArray.length; i++) {
+                      this.pickupPiece[i].x = this.userEquation.pointsArray[i].x;
+
+                this.pickupPiece[i].y = this.userEquation.pointsArray[i].y;
+                                                this.pickupPiece[i].collected = false;
+
+    }
+
+    this.userEquation2.initializeEquationSettings(0, 0, 0, 600);
+  //  this.userEquation2.draw(bmd.ctx);
+  this.drawEquationWithGameGraphics(this.userEquation2, this.equationGameGraphic);
   },
 
   commitToMove: function() {
