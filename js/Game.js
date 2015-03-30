@@ -5,6 +5,7 @@ var GRAPHLOCX = 0; // the x value upper left corner of the graph
 var GRAPHLOCY = 0; // the y value of the upper left corner of the graph
 var TICKMARKSIZE = 5; // length of the tickmarks on the graph
 var NUMEQUATIONPOINTS = 20;
+var NUMEQUATIONPOINTSFORANIMATION = 300;
 var XCOEFFPOSITIONX = 100;
 var XCOEFFPOSITIONY = GRAPHSIZE+100;
 var XEXPONENTPOSITIONX = 100 + 50;
@@ -325,9 +326,8 @@ console.dir(this.xCoefficientGamePieces);
 
     }
 
-    this.userEquation2.initializeEquationSettings(0, 0, 0, 600);
   //  this.userEquation2.draw(bmd.ctx);
-  this.drawEquationWithGameGraphics(this.userEquation2, this.equationGameGraphic);
+  this.equationGameGraphic.clear();
   },
 
   commitToMove: function() {
@@ -335,9 +335,11 @@ console.dir(this.xCoefficientGamePieces);
 
 bmd.dirty = true;
 bmd.addToWorld();
+if (!this.userEquation2) {
           this.userEquation2 = Object.create(equationEntity);
-  this.userEquation2.initializeEquationSettings(this.currentXCoefficient , this.currentXExponent, this.currentConstant, 600);
-  console.dir(bmd);
+      };
+  this.userEquation2.initializeEquationSettings(this.currentXCoefficient , this.currentXExponent, this.currentConstant, NUMEQUATIONPOINTSFORANIMATION);
+  console.dir(this.userEquation2);
   //  this.userEquation2.draw(bmd.ctx);
   this.drawEquationWithGameGraphics(this.userEquation2, this.equationGameGraphic);
 console.dir(this.game);

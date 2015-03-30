@@ -1,19 +1,8 @@
 // a prototype game object; note that the x and y values represent the center of the object not the upper left corner (draw function adjusts for this)
-var gameItem = {
+var equationPoint = {
 	x: 0, // x value of center of object
 	y: 0,  // y value of center of object
-	width: 0, // width of object
-	height: 0, // height of object
 	visible: true,
-	imageSrc: null, // place to store name of image source file
-	imageSrcXOffset: 0, // the x location of the upper left corner of the image in the atlas
-	imageSrcYOffset: 0, // the y location of the upper left corner of the image in the atlas
-	imageSrcWidth: 0, // the width of the image in the atlas
-	imageSrcHeight: 0, // the height of the image in the atlas
-	lastImageSrcX: 0, // the x value of the last image of this type in the atlas
-	imageObj: null, // the atlas image object
-	physicsBody: null,
-	type: null, // type of item e.g. TARGET, OBSTACLE, PLAYER
 	// a method to initialize the values
 	initialize: function(x, y, width, height, imageObj, imageSrcXOffset, imageSrcYOffset, imageSrcWidth, imageSrcHeight, lastImageSrcX) {
 		this.x = x;
@@ -40,7 +29,7 @@ var equationEntity = {
 	xExponent: 0, // the exponent of x
 	b: 0, // the b value
 	numPoints: 0, // the number of points to be plotted or displayed as images, used as a path, etc.
-	pointsArray: null, // the array of the points
+	pointsArray: [], // the array of the points
 	minX: 0, // the boundaries
 	maxX: 0,
 	maxY: 0,
@@ -113,13 +102,11 @@ var equationEntity = {
 		// how much to increment x when calculating each point
 		var xStep = (this.maxX - this.minX)/(this.numPoints-1);
 		this.maxY = 0;
-	if (!this.pointsArray) {
-		this.pointsArray = new Array(this.numPoints); // only create a new array first time, otherwise pointsArray is recycled
-		}
 	// set values for x and y
 		for (var i=0; i < this.numPoints; i++) {
 			if (!this.pointsArray[i]) {
-				this.pointsArray[i] = Object.create(gameItem); // only create first time; after that, recycle
+				console.log('creating new point');
+				this.pointsArray[i] = Object.create(equationPoint); // only create first time; after that, recycle
 				}
 			this.pointsArray[i].x = currentx * scaleFactor + (GRAPHSIZE)/2 + GRAPHLOCX;
 			this.pointsArray[i].y =  (GRAPHSIZE)/2 -(this.xCoeff*(Math.pow(currentx, this.xExponent)) + this.b) * scaleFactor + GRAPHLOCY;
@@ -141,36 +128,6 @@ var equationEntity = {
 		}
 		equationContext.stroke();
 		}
-	},
-
-// add physics to the points of the equation
-	addPhysics: function(entityType) {
-	var equationPointFixture = new b2FixtureDef();
-	equationPointFixture.density = 1.0;
-	equationPointFixture.friction = 0.0;
-	equationPointFixture.restitution = 1.0;
-	equationPointFixture.filter.categoryBits = TARGET;
-	equationPointFixture.filter.maskBits = PLAYER;
-	var equationPointBodyDef = new b2BodyDef();
-	equationPointBodyDef.type = b2Body.b2_dynamicBody;
-	equationPointFixture.shape = new b2CircleShape((TARGETIMAGEWIDTH/2)/PHYSICSSCALEFACTOR);
-	equationPointFixture.isSensor = true;
-	for (var i=0; i < this.numPoints; i++) {
-		equationPointBodyDef.position.x = this.pointsArray[i].x/PHYSICSSCALEFACTOR;
-	equationPointBodyDef.position.y = this.pointsArray[i].y/PHYSICSSCALEFACTOR;
-	equationPointBody = physicsWorld.CreateBody(equationPointBodyDef);
-	equationPointBody.CreateFixture(equationPointFixture);
-	equationPointBody.SetUserData(this.pointsArray[i]);
-	this.pointsArray[i].physicsBody = equationPointBody;
-	this.pointsArray[i].type = entityType;
-		}
-
-	},
-	//update the physics positions based on values in the pointsArray
-		updatePhysicsPositions: function() {
-		for (var i=0; i < this.numPoints; i++) {
-		this.pointsArray[i].physicsBody.SetPosition({x: this.pointsArray[i].x/PHYSICSSCALEFACTOR, y: this.pointsArray[i].y/PHYSICSSCALEFACTOR});
-		}
-		}
+	}
 	};
 	
