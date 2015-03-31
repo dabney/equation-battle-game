@@ -3,46 +3,25 @@ var equationPoint = {
 	x: 0, // x value of center of object
 	y: 0,  // y value of center of object
 	visible: true,
-	// a method to initialize the values
-	initialize: function(x, y, width, height, imageObj, imageSrcXOffset, imageSrcYOffset, imageSrcWidth, imageSrcHeight, lastImageSrcX) {
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
-		this.imageObj = imageObj;
-		this.imageSrcXOffset = imageSrcXOffset;
-		this.imageSrcYOffset = imageSrcYOffset;
-		this.imageSrcWidth = imageSrcWidth;
-		this.imageSrcHeight = imageSrcHeight;
-		this.lastImageSrcX = lastImageSrcX;
-		},
-	// a method to draw the object - adjusts x, y to upper left corner
-	draw: function(gameContext) {
-	if (this.visible) {
-	gameContext.drawImage(this.imageObj, this.imageSrcXOffset, this.imageSrcYOffset, this.imageSrcWidth, this.imageSrcHeight, this.x-(this.width/2), this.y - (this.height/2), this.width, this.height);
-	}
-	}
-	};
+		};
+
 // A prototype to handle univariate equations in the form f(x) = xCoeff*x^xExponent + b	
-var equationEntity = {
-	xCoeff: 0, // the coefficient of x
-	xExponent: 0, // the exponent of x
-	b: 0, // the b value
-	numPoints: 0, // the number of points to be plotted or displayed as images, used as a path, etc.
-	pointsArray: [], // the array of the points
-	minX: 0, // the boundaries
-	maxX: 0,
-	maxY: 0,
+function EquationEntity() {};
+
 	
-	initializeEquationSettings: function(xCoeff, xExponent, b, numPoints) {
-	this.xCoeff = xCoeff;
-	this.xExponent = xExponent;
-	this.b = b;
-	this.numPoints = numPoints;
+	EquationEntity.prototype.initializeEquationSettings=function(xCoeffIn, xExponentIn, bIn, numPointsIn) {
+	this.xCoeff = xCoeffIn;
+	this.xExponent = xExponentIn;
+	this.b = bIn;
+	this.numPoints = numPointsIn;
+	this.pointsArray = []; // the array of the points
+	this.minX = 0; // the boundaries
+	this.maxX = 0;
+	this.maxY = 0;
 	this.calculatePoints();
-	},
+	};
 	
-	calculatePoints: function() {
+	EquationEntity.prototype.calculatePoints = function() {
 	var xAtYMin;
 	var xAtYMax;
 	if (this.xExponent === 0 || this.xCoeff === 0) {
@@ -113,9 +92,9 @@ var equationEntity = {
 			this.pointsArray[i].visible = true;
 			currentx = currentx + xStep;
 		}
-	},
+	};
 // plots the equation in red	
-	draw: function(equationContext) {
+	EquationEntity.prototype.draw = function(equationContext) {
 	console.log('in draw: ' + this.xCoeff + 'x^' + this.xExponent + ' + ' + this.b);
 		if (this.pointsArray) {
 			equationContext.strokeStyle = "rgb(256, 0, 0)";
@@ -128,6 +107,6 @@ var equationEntity = {
 		}
 		equationContext.stroke();
 		}
-	}
 	};
+
 	

@@ -229,9 +229,12 @@ this.playerBMD.strokeStyle = '#ffffff';
 
 
 this.equationGameGraphic = this.game.add.graphics(0, 0);
+//this.userEquation = new EquationEntity();
+this.userEquation = Object.create(EquationEntity.prototype);
 
-this.userEquation = Object.create(equationEntity);
-  this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0, 3), getRandomInt(-3, 3), NUMEQUATIONPOINTS);
+console.dir(this.userEquation);
+
+this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0, 3), getRandomInt(-3, 3), NUMEQUATIONPOINTS);
 
 //	this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0, 3), getRandomInt(-3, 3), 60);
 		this.userEquation.draw(this.gridBMD.ctx);
@@ -336,7 +339,7 @@ console.dir(this.xCoefficientGamePieces);
 bmd.dirty = true;
 bmd.addToWorld();
 if (!this.userEquation2) {
-          this.userEquation2 = Object.create(equationEntity);
+          this.userEquation2 = Object.create(EquationEntity.prototype);;
       };
   this.userEquation2.initializeEquationSettings(this.currentXCoefficient , this.currentXExponent, this.currentConstant, NUMEQUATIONPOINTSFORANIMATION);
   console.dir(this.userEquation2);
