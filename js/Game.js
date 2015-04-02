@@ -6,13 +6,16 @@ var GRAPHLOCY = 0; // the y value of the upper left corner of the graph
 var TICKMARKSIZE = 5; // length of the tickmarks on the graph
 var NUMEQUATIONPOINTS = 20;
 var NUMEQUATIONPOINTSFORANIMATION = 300;
+var XCOEFFPIECEWIDTH = 82;
 var XCOEFFPOSITIONX = 100;
 var XCOEFFPOSITIONY = GRAPHSIZE+100;
-var XEXPONENTPOSITIONX = 100 + 50;
-var XEXPONENTPOSITIONY = GRAPHSIZE+70;
-var CONSTANTPOSITIONX = 100 + 50+ 50;
+var XEXPONENTPIECEWIDTH = 63;
+var XEXPONENTPOSITIONX = XCOEFFPOSITIONX + XCOEFFPIECEWIDTH/2;
+var XEXPONENTPOSITIONY = GRAPHSIZE+100;
+var CONSTANTPOSITIONX = XEXPONENTPOSITIONX + XEXPONENTPIECEWIDTH;
 var CONSTANTPOSITIONY = GRAPHSIZE+100;
-var equationFontStyle = { font: "italic 24px Palatino", fill: "#000000", align: "center" };
+var equationFontStyle = { font: "italic 36px Palatino", fill: "#000000"};
+var exponentFontStyle = { font: "italic 24px Palatino", fill: "#000000"};
 
 var validXCoefficients = [-3, -2, -1, 0, 1, 2, 3];
 var validXExponents = [0, 1, 2, 3];
@@ -49,14 +52,14 @@ function shuffle(array) {
   return array;
 }
 
-TextGamePiece = function(game, originX, originY, value, destinationX, destinationY) {
+TextGamePiece = function(game, originX, originY, value, destinationX, destinationY, spritefile) {
   
-    Phaser.Sprite.call(this, game, originX, originY, 'equationBattleImages', 'woodtile.png');
+    Phaser.Sprite.call(this, game, originX, originY, 'equationBattleImages', spritefile);
                     this.anchor.setTo(0.5, 0.5);
                       game.add.existing(this);
 
 
-    this.createTextObject(originX, originY, value);
+    this.createTextObject(originX, originY + 7, value);
 
     this.value = value;
         this.inputEnabled = true;
@@ -83,7 +86,7 @@ TextGamePiece.prototype.resetValue = function(newValue) {
 };
 TextGamePiece.prototype.update = function() {
   this.textObject.x = this.x;
-  this.textObject.y = this.y;
+  this.textObject.y = this.y + 7;
 };
 TextGamePiece.prototype.dragStart = function(draggedObject) {
         console.log('drag started:');
@@ -107,7 +110,7 @@ else {
         };
 
 function xCoefficientGamePiece(game, originX, originY, value, destinationX, destinationY) {
- TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY);
+ TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY, 'puzzle1.png');
 };
 xCoefficientGamePiece.prototype = Object.create(TextGamePiece.prototype);
 xCoefficientGamePiece.prototype.constructor = xCoefficientGamePiece;
@@ -128,10 +131,14 @@ else {
 };
 
 function xExponentGamePiece(game, originX, originY, value, destinationX, destinationY) {
-  TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY);
+  TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY, 'puzzle2.png');
 };
 xExponentGamePiece.prototype = Object.create(TextGamePiece.prototype);
 xExponentGamePiece.prototype.constructor = xExponentGamePiece;
+xExponentGamePiece.prototype.createTextObject = function(textLocationX, textLocationY, value) {
+   this.textObject = this.game.add.text(textLocationX, textLocationY, String(value), exponentFontStyle);
+                 this.textObject.anchor.setTo(0.5, 0.5);
+               };
 xExponentGamePiece.prototype.resetValue = function(newValue) {
   this.value = newValue;
   this.textObject.text = String(newValue);
@@ -150,7 +157,7 @@ else {
 };
 
 function constantGamePiece(game, originX, originY, value, destinationX, destinationY) {
-  TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY);
+  TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY, 'puzzle1.png');
 };
 constantGamePiece.prototype = Object.create(TextGamePiece.prototype);
 constantGamePiece.prototype.constructor = constantGamePiece;
@@ -351,10 +358,10 @@ console.dir(this.game);
     if (this.userEquation2.pointsArray[i].visible) {
   // console.log('visible point ' + i + ':' + this.userEquation2.pointsArray[i].x + ', ' + this.userEquation2.pointsArray[i].y);
 
-    playerXArray.push(this.userEquation2.pointsArray[i].x);
-    playerYArray.push(this.userEquation2.pointsArray[i].y);
+    playerXArray[i] = this.userEquation2.pointsArray[i].x;
+    playerYArray[i] = this.userEquation2.pointsArray[i].y;
 if (i > 0) {
-    playerRotationArray.push(Math.atan2(playerYArray[i] - playerYArray[i-1], playerXArray[i] - playerXArray[i-1]));
+    playerRotationArray[i] = Math.atan2(playerYArray[i] - playerYArray[i-1], playerXArray[i] - playerXArray[i-1]);
    //     if (player.rotation < 0) {
      //     player.rotation += 2*Math.PI;
           }
@@ -481,7 +488,6 @@ drawGrid: function(gridContext) {
             }
           }
           }
-          //  console.log('alien rotation: ' + this.alien.rotation);
             playerArrayPosition++;
             if (playerArrayPosition > playerXArray.length) {
               playerArrayPosition = 0;

@@ -1,88 +1,16 @@
 {"frames": [
 
 {
-	"filename": "Alienhead000.png",
-	"frame": {"x":2,"y":2,"w":50,"h":50},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
-	"sourceSize": {"w":50,"h":50}
-},
-{
-	"filename": "Alienhead001.png",
-	"frame": {"x":54,"y":2,"w":50,"h":50},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
-	"sourceSize": {"w":50,"h":50}
-},
-{
-	"filename": "Alienhead002.png",
-	"frame": {"x":106,"y":2,"w":50,"h":50},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
-	"sourceSize": {"w":50,"h":50}
-},
-{
-	"filename": "Alienhead003.png",
-	"frame": {"x":158,"y":2,"w":50,"h":50},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
-	"sourceSize": {"w":50,"h":50}
-},
-{
-	"filename": "Alienhead004.png",
-	"frame": {"x":210,"y":2,"w":50,"h":50},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
-	"sourceSize": {"w":50,"h":50}
-},
-{
-	"filename": "Alienhead005.png",
-	"frame": {"x":262,"y":2,"w":50,"h":50},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
-	"sourceSize": {"w":50,"h":50}
-},
-{
-	"filename": "Alienhead006.png",
-	"frame": {"x":314,"y":2,"w":50,"h":50},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
-	"sourceSize": {"w":50,"h":50}
-},
-{
-	"filename": "Alienhead007.png",
-	"frame": {"x":366,"y":2,"w":50,"h":50},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
-	"sourceSize": {"w":50,"h":50}
-},
-{
 	"filename": "background.png",
-	"frame": {"x":2,"y":54,"w":800,"h":480},
+	"frame": {"x":2,"y":2,"w":800,"h":480},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":800,"h":480},
 	"sourceSize": {"w":800,"h":480}
 },
 {
-	"filename": "bacon.png",
-	"frame": {"x":804,"y":54,"w":45,"h":32},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":32},
-	"sourceSize": {"w":45,"h":32}
-},
-{
 	"filename": "boxsmall.png",
-	"frame": {"x":851,"y":54,"w":70,"h":70},
+	"frame": {"x":804,"y":2,"w":70,"h":70},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":70,"h":70},
@@ -90,7 +18,7 @@
 },
 {
 	"filename": "buttonOut.png",
-	"frame": {"x":923,"y":54,"w":50,"h":44},
+	"frame": {"x":876,"y":2,"w":50,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":44},
@@ -98,111 +26,15 @@
 },
 {
 	"filename": "buttonOver.png",
-	"frame": {"x":2,"y":536,"w":50,"h":44},
+	"frame": {"x":928,"y":2,"w":50,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":44},
 	"sourceSize": {"w":50,"h":44}
 },
 {
-	"filename": "pickup000.png",
-	"frame": {"x":54,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
-	"filename": "pickup001.png",
-	"frame": {"x":121,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
-	"filename": "pickup002.png",
-	"frame": {"x":188,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
-	"filename": "pickup003.png",
-	"frame": {"x":255,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
-	"filename": "pickup004.png",
-	"frame": {"x":322,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
-	"filename": "pickup005.png",
-	"frame": {"x":389,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
-	"filename": "pickup006.png",
-	"frame": {"x":456,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
-	"filename": "pickup007.png",
-	"frame": {"x":523,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
-	"filename": "pickup008.png",
-	"frame": {"x":590,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
-	"filename": "pickup009.png",
-	"frame": {"x":657,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
-	"filename": "pickup010.png",
-	"frame": {"x":724,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
-	"filename": "pickup011.png",
-	"frame": {"x":791,"y":536,"w":65,"h":65},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":65},
-	"sourceSize": {"w":65,"h":65}
-},
-{
 	"filename": "planeRed1.png",
-	"frame": {"x":858,"y":536,"w":88,"h":73},
+	"frame": {"x":2,"y":484,"w":88,"h":73},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
@@ -210,7 +42,7 @@
 },
 {
 	"filename": "planeRed2.png",
-	"frame": {"x":2,"y":611,"w":88,"h":73},
+	"frame": {"x":92,"y":484,"w":88,"h":73},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
@@ -218,15 +50,31 @@
 },
 {
 	"filename": "planeRed3.png",
-	"frame": {"x":92,"y":611,"w":88,"h":73},
+	"frame": {"x":182,"y":484,"w":88,"h":73},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
 	"sourceSize": {"w":88,"h":73}
 },
 {
+	"filename": "puzzle1.png",
+	"frame": {"x":272,"y":484,"w":82,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":82,"h":76},
+	"sourceSize": {"w":82,"h":76}
+},
+{
+	"filename": "puzzle2.png",
+	"frame": {"x":356,"y":484,"w":63,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":63,"h":76},
+	"sourceSize": {"w":63,"h":76}
+},
+{
 	"filename": "repeat_1.png",
-	"frame": {"x":182,"y":611,"w":128,"h":128},
+	"frame": {"x":421,"y":484,"w":128,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
@@ -234,7 +82,7 @@
 },
 {
 	"filename": "starGold.png",
-	"frame": {"x":312,"y":611,"w":39,"h":38},
+	"frame": {"x":551,"y":484,"w":39,"h":38},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":39,"h":38},
@@ -242,7 +90,7 @@
 },
 {
 	"filename": "woodtile.png",
-	"frame": {"x":353,"y":611,"w":50,"h":50},
+	"frame": {"x":592,"y":484,"w":50,"h":50},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
@@ -255,6 +103,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:eda29c6764cd0ed8acffba5699390a9f:1/1$"
+	"smartupdate": "$TexturePacker:SmartUpdate:3eac23a01a8575e153d0d0d4ff7c8d06:1/1$"
 }
 }
