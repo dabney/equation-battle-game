@@ -1,5 +1,5 @@
-var MAXNUMBER = 4; // the max number of the grid
-var MAXGRAPHSIZE = 640;
+var MAXNUMBER = 50; // the max number of the grid
+var MAXGRAPHSIZE = 740;
 var GRAPHSIZE = MAXGRAPHSIZE; // the width and height in pixels of the graph - recalculated later based on window size
 var GRAPHLOCX = 0; // the x value upper left corner of the graph
 var GRAPHLOCY = 0; // the y value of the upper left corner of the graph
@@ -470,6 +470,7 @@ for (var i=0; i < theXPoints.length; i++) {
 //////
 // draw the coordinate grid 
 drawGrid: function(gridContext) {
+  var graphTotalNumbersPlusBorder = (MAXNUMBER + 1) * 2;
   //  console.log('in drawGrid: ' + GRAPHLOCX + ', ' +GRAPHLOCY + ', ' + GRAPHSIZE)
 	gridContext.save();
 	gridContext.translate(GRAPHLOCX, GRAPHLOCY);
@@ -482,25 +483,26 @@ drawGrid: function(gridContext) {
 	//draw x axis
 	gridContext.moveTo(0, 0 + GRAPHSIZE/2);
 	gridContext.lineTo(GRAPHSIZE, GRAPHSIZE/2);
-	for (var i=2; i < 9; i++) {
-		gridContext.moveTo( (GRAPHSIZE/10) -TICKMARKSIZE, i*(GRAPHSIZE/10));
-		gridContext.lineTo((GRAPHSIZE/10) + TICKMARKSIZE, i * (GRAPHSIZE/10));
-		gridContext.moveTo( (GRAPHSIZE/2) -TICKMARKSIZE, i*(GRAPHSIZE/10));
-		gridContext.lineTo((GRAPHSIZE/2) + TICKMARKSIZE, i * (GRAPHSIZE/10));
-		gridContext.moveTo( GRAPHSIZE-(GRAPHSIZE/10) -TICKMARKSIZE, i*(GRAPHSIZE/10));
-		gridContext.lineTo(GRAPHSIZE - (GRAPHSIZE/10) + TICKMARKSIZE, i * (GRAPHSIZE/10));
-		gridContext.moveTo(i * (GRAPHSIZE/10), (GRAPHSIZE/2)-TICKMARKSIZE);
-		gridContext.lineTo(i * (GRAPHSIZE/10), (GRAPHSIZE/2)+TICKMARKSIZE);
-		gridContext.moveTo(i * (GRAPHSIZE/10), (GRAPHSIZE/10)-TICKMARKSIZE);
-		gridContext.lineTo(i * (GRAPHSIZE/10), (GRAPHSIZE/10)+TICKMARKSIZE);
-		gridContext.moveTo(i * (GRAPHSIZE/10), GRAPHSIZE -(GRAPHSIZE/10)-TICKMARKSIZE);
-		gridContext.lineTo(i * (GRAPHSIZE/10), GRAPHSIZE - (GRAPHSIZE/10)+TICKMARKSIZE);
+	for (var i=2; i <= MAXNUMBER*2; i++) {
+		gridContext.moveTo( (GRAPHSIZE/graphTotalNumbersPlusBorder) -TICKMARKSIZE, i*(GRAPHSIZE/graphTotalNumbersPlusBorder));
+		gridContext.lineTo((GRAPHSIZE/graphTotalNumbersPlusBorder) + TICKMARKSIZE, i * (GRAPHSIZE/graphTotalNumbersPlusBorder));
+		gridContext.moveTo( (GRAPHSIZE/2) -TICKMARKSIZE, i*(GRAPHSIZE/graphTotalNumbersPlusBorder));
+		gridContext.lineTo((GRAPHSIZE/2) + TICKMARKSIZE, i * (GRAPHSIZE/graphTotalNumbersPlusBorder));
+		gridContext.moveTo( GRAPHSIZE-(GRAPHSIZE/graphTotalNumbersPlusBorder) -TICKMARKSIZE, i*(GRAPHSIZE/graphTotalNumbersPlusBorder));
+		gridContext.lineTo(GRAPHSIZE - (GRAPHSIZE/graphTotalNumbersPlusBorder) + TICKMARKSIZE, i * (GRAPHSIZE/graphTotalNumbersPlusBorder));
+		gridContext.moveTo(i * (GRAPHSIZE/graphTotalNumbersPlusBorder), (GRAPHSIZE/2)-TICKMARKSIZE);
+		gridContext.lineTo(i * (GRAPHSIZE/graphTotalNumbersPlusBorder), (GRAPHSIZE/2)+TICKMARKSIZE);
+		gridContext.moveTo(i * (GRAPHSIZE/graphTotalNumbersPlusBorder), (GRAPHSIZE/graphTotalNumbersPlusBorder)-TICKMARKSIZE);
+		gridContext.lineTo(i * (GRAPHSIZE/graphTotalNumbersPlusBorder), (GRAPHSIZE/graphTotalNumbersPlusBorder)+TICKMARKSIZE);
+		gridContext.moveTo(i * (GRAPHSIZE/graphTotalNumbersPlusBorder), GRAPHSIZE -(GRAPHSIZE/graphTotalNumbersPlusBorder)-TICKMARKSIZE);
+		gridContext.lineTo(i * (GRAPHSIZE/graphTotalNumbersPlusBorder), GRAPHSIZE - (GRAPHSIZE/graphTotalNumbersPlusBorder)+TICKMARKSIZE);
 		}
-	gridContext.rect(GRAPHSIZE/10, GRAPHSIZE/10, GRAPHSIZE-2*(GRAPHSIZE/10), GRAPHSIZE-2*GRAPHSIZE/10);
-	gridContext.fillText('4', GRAPHSIZE-GRAPHSIZE/10 +2, GRAPHSIZE/2 + 17);
-	gridContext.fillText('4', GRAPHSIZE/2 + 2, GRAPHSIZE/10+17);
-	gridContext.fillText('-4', GRAPHSIZE/10 -20, GRAPHSIZE/2 +17);
-	gridContext.fillText('-4', GRAPHSIZE/2 +2, GRAPHSIZE-GRAPHSIZE/10+17);
+	gridContext.rect(GRAPHSIZE/graphTotalNumbersPlusBorder, GRAPHSIZE/graphTotalNumbersPlusBorder, GRAPHSIZE-2*(GRAPHSIZE/graphTotalNumbersPlusBorder), GRAPHSIZE-2*GRAPHSIZE/graphTotalNumbersPlusBorder);
+
+	gridContext.fillText(String(MAXNUMBER), GRAPHSIZE-GRAPHSIZE/graphTotalNumbersPlusBorder +2, GRAPHSIZE/2 + 17);
+	gridContext.fillText(String(MAXNUMBER), GRAPHSIZE/2 + 2, GRAPHSIZE/graphTotalNumbersPlusBorder+17);
+	gridContext.fillText(String(-MAXNUMBER), GRAPHSIZE/graphTotalNumbersPlusBorder -20, GRAPHSIZE/2 +17);
+	gridContext.fillText(String(-MAXNUMBER), GRAPHSIZE/2 +2, GRAPHSIZE-GRAPHSIZE/graphTotalNumbersPlusBorder+17);
 	gridContext.stroke();
 		gridContext.restore();
 },
