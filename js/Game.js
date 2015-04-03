@@ -7,14 +7,14 @@ var TICKMARKSIZE = 5; // length of the tickmarks on the graph
 var NUMEQUATIONPOINTS = 20;
 var NUMEQUATIONPOINTSFORANIMATION = 300;
 var XCOEFFPIECEWIDTH = 82;
-var XCOEFFPOSITIONX = 100;
-var XCOEFFPOSITIONY = GRAPHSIZE+100;
+var XCOEFFPOSITIONX = 200;
+var XCOEFFPOSITIONY = GRAPHSIZE+150;
 var XEXPONENTPIECEWIDTH = 63;
 var XEXPONENTPOSITIONX = XCOEFFPOSITIONX + XCOEFFPIECEWIDTH/2;
-var XEXPONENTPOSITIONY = GRAPHSIZE+100;
-var CONSTANTPOSITIONX = XEXPONENTPOSITIONX + XEXPONENTPIECEWIDTH;
-var CONSTANTPOSITIONY = GRAPHSIZE+100;
-var equationFontStyle = { font: "italic 36px Palatino", fill: "#000000"};
+var XEXPONENTPOSITIONY = GRAPHSIZE+150;
+var CONSTANTPOSITIONX = XEXPONENTPOSITIONX + XEXPONENTPIECEWIDTH/2;
+var CONSTANTPOSITIONY = GRAPHSIZE+150;
+var equationFontStyle = { font: "italic 34px Palatino", fill: "#000000"};
 var exponentFontStyle = { font: "italic 24px Palatino", fill: "#000000"};
 
 var validXCoefficients = [-3, -2, -1, 0, 1, 2, 3];
@@ -57,9 +57,10 @@ TextGamePiece = function(game, originX, originY, value, destinationX, destinatio
     Phaser.Sprite.call(this, game, originX, originY, 'equationBattleImages', spritefile);
                     this.anchor.setTo(0.5, 0.5);
                       game.add.existing(this);
+  this.textOffsetX = 0;
+  this.textOffsetY = 0;
 
-
-    this.createTextObject(originX, originY + 7, value);
+    this.createTextObject(originX + this.textOffsetX, originY + this.textOffsetY, value);
 
     this.value = value;
         this.inputEnabled = true;
@@ -85,8 +86,8 @@ TextGamePiece.prototype.resetValue = function(newValue) {
     this.y = this.originY;
 };
 TextGamePiece.prototype.update = function() {
-  this.textObject.x = this.x;
-  this.textObject.y = this.y + 7;
+  this.textObject.x = this.x + this.textOffsetX;
+  this.textObject.y = this.y + this.textOffsetY;
 };
 TextGamePiece.prototype.dragStart = function(draggedObject) {
         console.log('drag started:');
@@ -111,6 +112,8 @@ else {
 
 function xCoefficientGamePiece(game, originX, originY, value, destinationX, destinationY) {
  TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY, 'puzzle1.png');
+ this.textOffsetX = 0;
+ this.textOffsetY = 12;
 };
 xCoefficientGamePiece.prototype = Object.create(TextGamePiece.prototype);
 xCoefficientGamePiece.prototype.constructor = xCoefficientGamePiece;
@@ -118,7 +121,12 @@ xCoefficientGamePiece.prototype.createTextObject = function(textLocationX, textL
    this.textObject = this.game.add.text(textLocationX, textLocationY, String(value + 'x'), equationFontStyle);
                  this.textObject.anchor.setTo(0.5, 0.5);
                };
-
+xCoefficientGamePiece.prototype.resetValue = function(newValue) {
+  this.value = newValue;
+  this.textObject.text = String(newValue + 'x');
+  this.x = this.originX;
+    this.y = this.originY;
+};
 
 xCoefficientGamePiece.prototype.dragRelease = function(item) {
   this.game.currentXCoefficient = item.value;
@@ -132,6 +140,8 @@ else {
 
 function xExponentGamePiece(game, originX, originY, value, destinationX, destinationY) {
   TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY, 'puzzle2.png');
+   this.textOffsetX = -14;
+ this.textOffsetY = -4;
 };
 xExponentGamePiece.prototype = Object.create(TextGamePiece.prototype);
 xExponentGamePiece.prototype.constructor = xExponentGamePiece;
@@ -157,11 +167,40 @@ else {
 };
 
 function constantGamePiece(game, originX, originY, value, destinationX, destinationY) {
-  TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY, 'puzzle1.png');
+  TextGamePiece.call(this, game, originX, originY, value, destinationX, destinationY, 'puzzle3.png');
+  this.textOffsetX = -4;
+ this.textOffsetY = 12;
 };
 constantGamePiece.prototype = Object.create(TextGamePiece.prototype);
 constantGamePiece.prototype.constructor = constantGamePiece;
+constantGamePiece.prototype.createTextObject = function(textLocationX, textLocationY, value) {
+  var valueString;
+  if (value >= 0) {
+    valueString = '+ ' + value;
+  }
+  else {
+        valueString = '- ' + Math.abs(value);
 
+  }
+   this.textObject = this.game.add.text(textLocationX, textLocationY, valueString, equationFontStyle);
+                 this.textObject.anchor.setTo(0.5, 0.5);
+   };
+constantGamePiece.prototype.resetValue = function(newValue) {
+  this.value = newValue;
+    var valueString;
+  if (newValue >= 0) {
+    valueString = '+ ' + newValue;
+  }
+  else {
+        valueString = '- ' + Math.abs(newValue);
+
+  }
+  this.textObject.text = valueString;
+  this.x = this.originX;
+    this.y = this.originY;
+
+};
+ 
 constantGamePiece.prototype.dragRelease = function(item) {
   this.game.currentConstant = item.value;
      if (this.game.physics.arcade.distanceToXY( item , item.finalPositionX, item.finalPositionY) < 50) {
@@ -271,13 +310,13 @@ this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0
  shuffle(validConstants);
 
       for (var i = 0; i < 2; i++) {
-       currentGamePiece = new xCoefficientGamePiece(this, i*54 + 20, GRAPHSIZE + 20, validXCoefficients[i], XCOEFFPOSITIONX, XCOEFFPOSITIONY);
+       currentGamePiece = new xCoefficientGamePiece(this, i*XCOEFFPIECEWIDTH + 120, GRAPHSIZE + 20, validXCoefficients[i], XCOEFFPOSITIONX, XCOEFFPOSITIONY);
         this.xCoefficientGamePieces.add(currentGamePiece);
         console.log('created game piece');
         console.dir(this);
-              currentGamePiece = new xExponentGamePiece(this, i*54 + 220, GRAPHSIZE + 20, validXExponents[i], XEXPONENTPOSITIONX, XEXPONENTPOSITIONY);
+              currentGamePiece = new xExponentGamePiece(this, i*XCOEFFPIECEWIDTH + 320, GRAPHSIZE + 20, validXExponents[i], XEXPONENTPOSITIONX, XEXPONENTPOSITIONY);
         this.xExponentGamePieces.add(currentGamePiece);
-              currentGamePiece = new constantGamePiece(this, i*54 + 440, GRAPHSIZE + 20, validConstants[i], CONSTANTPOSITIONX, CONSTANTPOSITIONY);
+              currentGamePiece = new constantGamePiece(this, i*XCOEFFPIECEWIDTH + 540, GRAPHSIZE + 20, validConstants[i], CONSTANTPOSITIONX, CONSTANTPOSITIONY);
         this.constantGamePieces.add(currentGamePiece);
        };
 console.dir(this.xCoefficientGamePieces);

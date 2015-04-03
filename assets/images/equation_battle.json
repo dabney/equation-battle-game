@@ -73,8 +73,16 @@
 	"sourceSize": {"w":63,"h":76}
 },
 {
+	"filename": "puzzle3.png",
+	"frame": {"x":421,"y":484,"w":73,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":73,"h":76},
+	"sourceSize": {"w":73,"h":76}
+},
+{
 	"filename": "repeat_1.png",
-	"frame": {"x":421,"y":484,"w":128,"h":128},
+	"frame": {"x":496,"y":484,"w":128,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
@@ -82,7 +90,7 @@
 },
 {
 	"filename": "starGold.png",
-	"frame": {"x":551,"y":484,"w":39,"h":38},
+	"frame": {"x":626,"y":484,"w":39,"h":38},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":39,"h":38},
@@ -90,7 +98,7 @@
 },
 {
 	"filename": "woodtile.png",
-	"frame": {"x":592,"y":484,"w":50,"h":50},
+	"frame": {"x":667,"y":484,"w":50,"h":50},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
@@ -103,6 +111,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:3eac23a01a8575e153d0d0d4ff7c8d06:1/1$"
+	"smartupdate": "$TexturePacker:SmartUpdate:581638c9c65c5cb5444168afa95df6bc:1/1$"
 }
 }
