@@ -1,5 +1,7 @@
-var MAXNUMBER = 50; // the max number of the grid
-var MAXGRAPHSIZE = 740;
+
+//(function() {
+var MAXNUMBER = 5; // the max number of the grid
+var MAXGRAPHSIZE = 640; //766
 var GRAPHSIZE = MAXGRAPHSIZE; // the width and height in pixels of the graph - recalculated later based on window size
 var GRAPHLOCX = 0; // the x value upper left corner of the graph
 var GRAPHLOCY = 0; // the y value of the upper left corner of the graph
@@ -320,11 +322,15 @@ this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0
         this.constantGamePieces.add(currentGamePiece);
        };
 console.dir(this.xCoefficientGamePieces);
-  this.commitButton = this.add.button(480, GRAPHSIZE + 100, 'equationBattleImages', this.commitToMove, this, 'buttonOver.png', 'buttonOut.png', 'buttonOver.png');
+  this.commitButton = this.add.button(480, XCOEFFPOSITIONY, 'equationBattleImages', this.commitToMove, this, 'buttonOver.png', 'buttonOut.png', 'buttonOver.png');
     this.commitButton.input.useHandCursor = true;
 
   this.resetButton = this.add.button(600, GRAPHSIZE + 100, 'equationBattleImages', this.reset, this, 'repeat_1.png', 'repeat_1.png', 'repeat_1.png');
     this.resetButton.input.useHandCursor = true;
+                this.resetButton.anchor.setTo(0.5, 0.5);
+                                this.resetButton.scale.setTo(0.5, 0.5);
+
+
 
     this.airplane = this.game.add.sprite(100, 180, 'equationBattleImages', 'planeRed1.png');
             this.airplane.anchor.setTo(0.5, 0.5);
@@ -349,7 +355,7 @@ console.dir(this.xCoefficientGamePieces);
 
            this.game.score = 0;
 
-           this.game.scoreTextObject = this.game.add.text(550, 700,  String(this.game.score), equationFontStyle);
+           this.game.scoreTextObject = this.game.add.text(550, XCOEFFPOSITIONY,  String(this.game.score), equationFontStyle);
 	},
 
   reset: function() {
@@ -552,7 +558,7 @@ drawGrid: function(gridContext) {
    this.game.scoreTextObject.text = String(this.game.score);
    sprite2.collected = true;
 //sprite2.kill();
-    tempTween = this.game.add.tween(sprite2).to({x: 600, y: 700 }, 500, Phaser.Easing.Back.Out, true);
+    tempTween = this.game.add.tween(sprite2).to({x: 600, y: XCOEFFPOSITIONY }, 500, Phaser.Easing.Back.Out, true);
     tempTween.onComplete.add(function() {
       //sprite2.kill();
     });
@@ -565,3 +571,4 @@ drawGrid: function(gridContext) {
     }
 
 };
+//}());
