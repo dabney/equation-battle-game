@@ -1,7 +1,7 @@
 
 //(function() {
 var MAXNUMBER = 5; // the max number of the grid
-var MAXGRAPHSIZE = 640; //766
+var MAXGRAPHSIZE = 640 //766
 var GRAPHSIZE = MAXGRAPHSIZE; // the width and height in pixels of the graph - recalculated later based on window size
 var GRAPHLOCX = 0; // the x value upper left corner of the graph
 var GRAPHLOCY = 0; // the y value of the upper left corner of the graph
@@ -16,6 +16,8 @@ var XEXPONENTPOSITIONX = XCOEFFPOSITIONX + XCOEFFPIECEWIDTH/2;
 var XEXPONENTPOSITIONY = GRAPHSIZE+150;
 var CONSTANTPOSITIONX = XEXPONENTPOSITIONX + XEXPONENTPIECEWIDTH/2;
 var CONSTANTPOSITIONY = GRAPHSIZE+150;
+var SCOREPOSITIONY = 50;
+var COLLISIONDISTANCE = 15;
 var equationFontStyle = { font: "italic 34px Palatino", fill: "#000000"};
 var exponentFontStyle = { font: "italic 24px Palatino", fill: "#000000"};
 
@@ -104,11 +106,8 @@ TextGamePiece.prototype.dragRelease = function(item) {
             this.game.add.tween(item).to({x: item.finalPositionX, y: item.finalPositionY }, 500, Phaser.Easing.Back.Out, true);
 }
 else {
-//    var target_angle = this.bmdsprite.angle - 180;
-//    this.game.add.tween(this.bmdsprite).to({angle: this.bmdsprite.angle - 180}, 1000).start();
-//this.bmdsprite.rotation = this.bmdsprite.rotation + 3.141519;
             this.game.add.tween(item).to({x: item.originX, y: item.originY }, 500, Phaser.Easing.Back.Out, true);
-//item.bmd.clear();
+
 }
         };
 
@@ -345,17 +344,14 @@ console.dir(this.xCoefficientGamePieces);
 
     // play animation
     this.airplane.animations.play('fly');
-//        this.bmdsprite = this.add.sprite(240, 240, this.bmd);
-//		this.bmdsprite.anchor.setTo(0.5, 0.5);
-   
-//        this.bmdsprite = this.add.sprite(240, 240, this.bmd);
-//    this.bmdsprite.anchor.setTo(0.5, 0.5);
            this.game.physics.enable([this.airplane], Phaser.Physics.ARCADE);
            this.game.physics.enable([playerXArray], Phaser.Physics.ARCADE);
+            this.game.physics.enable([playerYArray], Phaser.Physics.ARCADE);
+
 
            this.game.score = 0;
 
-           this.game.scoreTextObject = this.game.add.text(550, XCOEFFPOSITIONY,  String(this.game.score), equationFontStyle);
+           this.game.scoreTextObject = this.game.add.text(600, SCOREPOSITIONY,  String(this.game.score), equationFontStyle);
 	},
 
   reset: function() {
@@ -406,6 +402,7 @@ console.dir(this.game);
     playerXArray[i] = this.userEquation2.pointsArray[i].x;
     playerYArray[i] = this.userEquation2.pointsArray[i].y;
 if (i > 0) {
+  console.log('setting rotationArray: i=' + i);
     playerRotationArray[i] = Math.atan2(playerYArray[i] - playerYArray[i-1], playerXArray[i] - playerXArray[i-1]);
    //     if (player.rotation < 0) {
      //     player.rotation += 2*Math.PI;
@@ -530,7 +527,7 @@ drawGrid: function(gridContext) {
             this.airplane.rotation = playerRotationArray[playerArrayPosition];
             for (var i = 0; i < this.pickupPiece.length; i++) {
               if (!this.pickupPiece[i].collected) {
-            if (this.game.physics.arcade.distanceToXY( this.airplane , this.pickupPiece[i].x, this.pickupPiece[i].y) < 10) {
+            if (this.game.physics.arcade.distanceToXY(this.airplane, this.pickupPiece[i].x, this.pickupPiece[i].y) < COLLISIONDISTANCE) {
               this.collisionCallback(this.airplane, this.pickupPiece[i]);
             }
           }
@@ -539,6 +536,7 @@ drawGrid: function(gridContext) {
             if (playerArrayPosition > playerXArray.length) {
               playerArrayPosition = 0;
               playerTraversing = false;
+              this.reset();
 
 }
           }
@@ -558,7 +556,7 @@ drawGrid: function(gridContext) {
    this.game.scoreTextObject.text = String(this.game.score);
    sprite2.collected = true;
 //sprite2.kill();
-    tempTween = this.game.add.tween(sprite2).to({x: 600, y: XCOEFFPOSITIONY }, 500, Phaser.Easing.Back.Out, true);
+    tempTween = this.game.add.tween(sprite2).to({x: 600, y: SCOREPOSITIONY }, 500, Phaser.Easing.Back.Out, true);
     tempTween.onComplete.add(function() {
       //sprite2.kill();
     });

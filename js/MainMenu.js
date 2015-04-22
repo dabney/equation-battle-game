@@ -23,7 +23,7 @@ BasicGame.MainMenu.prototype = {
 	    		
 
 	    // Add "Click here to Play" Button
-
+    this.add.sprite(0,0, 'equationBattleImages', 'background.png');
 		this.playButton = this.add.button(160, 210, 'equationBattleImages', this.startGame, this, 'buttonOver.png', 'buttonOut.png', 'buttonOver.png');
 		this.playButton.input.useHandCursor = true;
 
