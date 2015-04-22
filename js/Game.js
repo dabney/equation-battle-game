@@ -1,5 +1,6 @@
 
 //(function() {
+var DEBUG = false;
 var MAXNUMBER = 5; // the max number of the grid
 var MAXGRAPHSIZE = 640 //766
 var GRAPHSIZE = MAXGRAPHSIZE; // the width and height in pixels of the graph - recalculated later based on window size
@@ -9,13 +10,13 @@ var TICKMARKSIZE = 5; // length of the tickmarks on the graph
 var NUMEQUATIONPOINTS = 20;
 var NUMEQUATIONPOINTSFORANIMATION = 300;
 var XCOEFFPIECEWIDTH = 82;
-var XCOEFFPOSITIONX = 200;
-var XCOEFFPOSITIONY = GRAPHSIZE+150;
+var XCOEFFPOSITIONX = 150;
+var XCOEFFPOSITIONY = GRAPHSIZE+120;
 var XEXPONENTPIECEWIDTH = 63;
 var XEXPONENTPOSITIONX = XCOEFFPOSITIONX + XCOEFFPIECEWIDTH/2;
-var XEXPONENTPOSITIONY = GRAPHSIZE+150;
+var XEXPONENTPOSITIONY = GRAPHSIZE+120;
 var CONSTANTPOSITIONX = XEXPONENTPOSITIONX + XEXPONENTPIECEWIDTH/2;
-var CONSTANTPOSITIONY = GRAPHSIZE+150;
+var CONSTANTPOSITIONY = GRAPHSIZE+120;
 var SCOREPOSITIONY = 50;
 var COLLISIONDISTANCE = 15;
 var equationFontStyle = { font: "italic 34px Palatino", fill: "#000000"};
@@ -311,25 +312,25 @@ this.userEquation.initializeEquationSettings(getRandomInt(-3, 3), getRandomInt(0
  shuffle(validConstants);
 
       for (var i = 0; i < 2; i++) {
-       currentGamePiece = new xCoefficientGamePiece(this, i*XCOEFFPIECEWIDTH + 120, GRAPHSIZE + 20, validXCoefficients[i], XCOEFFPOSITIONX, XCOEFFPOSITIONY);
+       currentGamePiece = new xCoefficientGamePiece(this, i*XCOEFFPIECEWIDTH + 100, GRAPHSIZE + 20, validXCoefficients[i], XCOEFFPOSITIONX, XCOEFFPOSITIONY);
         this.xCoefficientGamePieces.add(currentGamePiece);
         console.log('created game piece');
         console.dir(this);
-              currentGamePiece = new xExponentGamePiece(this, i*XCOEFFPIECEWIDTH + 320, GRAPHSIZE + 20, validXExponents[i], XEXPONENTPOSITIONX, XEXPONENTPOSITIONY);
+              currentGamePiece = new xExponentGamePiece(this, i*XCOEFFPIECEWIDTH + 300, GRAPHSIZE + 20, validXExponents[i], XEXPONENTPOSITIONX, XEXPONENTPOSITIONY);
         this.xExponentGamePieces.add(currentGamePiece);
-              currentGamePiece = new constantGamePiece(this, i*XCOEFFPIECEWIDTH + 540, GRAPHSIZE + 20, validConstants[i], CONSTANTPOSITIONX, CONSTANTPOSITIONY);
+              currentGamePiece = new constantGamePiece(this, i*XCOEFFPIECEWIDTH + 500, GRAPHSIZE + 20, validConstants[i], CONSTANTPOSITIONX, CONSTANTPOSITIONY);
         this.constantGamePieces.add(currentGamePiece);
        };
 console.dir(this.xCoefficientGamePieces);
-  this.commitButton = this.add.button(480, XCOEFFPOSITIONY, 'equationBattleImages', this.commitToMove, this, 'buttonOver.png', 'buttonOut.png', 'buttonOver.png');
+  this.commitButton = this.add.button(320, XCOEFFPOSITIONY - 10, 'equationBattleImages', this.commitToMove, this, 'buttonOver.png', 'buttonOut.png', 'buttonOver.png');
     this.commitButton.input.useHandCursor = true;
 
+  if (DEBUG) {
   this.resetButton = this.add.button(600, GRAPHSIZE + 100, 'equationBattleImages', this.reset, this, 'repeat_1.png', 'repeat_1.png', 'repeat_1.png');
     this.resetButton.input.useHandCursor = true;
                 this.resetButton.anchor.setTo(0.5, 0.5);
                                 this.resetButton.scale.setTo(0.5, 0.5);
-
-
+  }
 
     this.airplane = this.game.add.sprite(100, 180, 'equationBattleImages', 'planeRed1.png');
             this.airplane.anchor.setTo(0.5, 0.5);
