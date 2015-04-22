@@ -1,8 +1,16 @@
 {"frames": [
 
 {
+	"filename": "background.png",
+	"frame": {"x":2,"y":2,"w":800,"h":480},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":800,"h":480},
+	"sourceSize": {"w":800,"h":480}
+},
+{
 	"filename": "boxsmall.png",
-	"frame": {"x":2,"y":2,"w":70,"h":70},
+	"frame": {"x":804,"y":2,"w":70,"h":70},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":70,"h":70},
@@ -10,7 +18,7 @@
 },
 {
 	"filename": "buttonOut.png",
-	"frame": {"x":74,"y":2,"w":50,"h":44},
+	"frame": {"x":876,"y":2,"w":50,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":44},
@@ -18,15 +26,79 @@
 },
 {
 	"filename": "buttonOver.png",
-	"frame": {"x":2,"y":74,"w":50,"h":44},
+	"frame": {"x":928,"y":2,"w":50,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":44},
 	"sourceSize": {"w":50,"h":44}
 },
 {
+	"filename": "planeRed1.png",
+	"frame": {"x":2,"y":484,"w":88,"h":73},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
+	"sourceSize": {"w":88,"h":73}
+},
+{
+	"filename": "planeRed2.png",
+	"frame": {"x":92,"y":484,"w":88,"h":73},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
+	"sourceSize": {"w":88,"h":73}
+},
+{
+	"filename": "planeRed3.png",
+	"frame": {"x":182,"y":484,"w":88,"h":73},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":73},
+	"sourceSize": {"w":88,"h":73}
+},
+{
+	"filename": "puzzle1.png",
+	"frame": {"x":272,"y":484,"w":82,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":82,"h":76},
+	"sourceSize": {"w":82,"h":76}
+},
+{
+	"filename": "puzzle2.png",
+	"frame": {"x":356,"y":484,"w":63,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":63,"h":76},
+	"sourceSize": {"w":63,"h":76}
+},
+{
+	"filename": "puzzle3.png",
+	"frame": {"x":421,"y":484,"w":73,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":73,"h":76},
+	"sourceSize": {"w":73,"h":76}
+},
+{
+	"filename": "repeat_1.png",
+	"frame": {"x":496,"y":484,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128}
+},
+{
+	"filename": "starGold.png",
+	"frame": {"x":626,"y":484,"w":39,"h":38},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":39,"h":38},
+	"sourceSize": {"w":39,"h":38}
+},
+{
 	"filename": "woodtile.png",
-	"frame": {"x":54,"y":74,"w":50,"h":50},
+	"frame": {"x":667,"y":484,"w":50,"h":50},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
@@ -37,8 +109,8 @@
 	"version": "1.0",
 	"image": "equation_battle.png",
 	"format": "RGBA8888",
-	"size": {"w":128,"h":128},
+	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:09004f30754049696742159a8d26536d:1/1$"
+	"smartupdate": "$TexturePacker:SmartUpdate:581638c9c65c5cb5444168afa95df6bc:1/1$"
 }
 }

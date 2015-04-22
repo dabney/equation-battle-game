@@ -154,6 +154,31 @@
             <filename>buttonOver.png</filename>
             <filename>boxsmall.png</filename>
             <filename>woodtile.png</filename>
+            <filename>planeRed1.png</filename>
+            <filename>planeRed2.png</filename>
+            <filename>planeRed3.png</filename>
+            <filename>starGold.png</filename>
+            <filename>planeRed1.png</filename>
+            <filename>planeRed2.png</filename>
+            <filename>planeRed3.png</filename>
+            <filename>starGold.png</filename>
+            <filename>planeRed1.png</filename>
+            <filename>planeRed2.png</filename>
+            <filename>planeRed3.png</filename>
+            <filename>starGold.png</filename>
+            <filename>planeRed1.png</filename>
+            <filename>planeRed2.png</filename>
+            <filename>planeRed3.png</filename>
+            <filename>starGold.png</filename>
+            <filename>planeRed1.png</filename>
+            <filename>planeRed2.png</filename>
+            <filename>planeRed3.png</filename>
+            <filename>starGold.png</filename>
+            <filename>background.png</filename>
+            <filename>repeat_1.png</filename>
+            <filename>puzzle1.png</filename>
+            <filename>puzzle2.png</filename>
+            <filename>puzzle3.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
